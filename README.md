@@ -74,7 +74,4 @@ npm run build
 
 Para personalizar el contenido, puedes modificar los textos en los componentes de la carpeta `src/components/sections/`. Para cambiar los colores y estilos globales, ajusta la configuración en `tailwind.config.js` y `src/index.css`.
 
-## Créditos
-
-Diseñado y desarrollado con inspiración en sitios web modernos como [Repeat Studio Freight](https://repeat.studiofreight.com).
 # angela-sophia-psicologia
