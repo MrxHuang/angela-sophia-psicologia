@@ -52,9 +52,9 @@ const SectionTitle = ({
   };
 
   return (
-    <div className={`mb-12 ${alignmentClasses[align]} ${className}`} ref={ref}>
+    <div className={`mb-8 sm:mb-10 md:mb-12 ${alignmentClasses[align]} ${className}`} ref={ref}>
       <motion.h2 
-        className="text-4xl md:text-5xl font-display font-bold mb-4"
+        className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-2 sm:mb-4"
         initial="hidden"
         animate={controls}
         variants={titleVariants}
@@ -64,7 +64,7 @@ const SectionTitle = ({
       
       {subtitle && (
         <motion.p 
-          className="text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto"
+          className="text-base sm:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto px-4 sm:px-6 md:px-0"
           initial="hidden"
           animate={controls}
           variants={subtitleVariants}

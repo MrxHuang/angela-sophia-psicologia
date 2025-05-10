@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../ui/Button';
-import useSmoothScroll from '../../hooks/useSmoothScroll';
 
 /**
  * Componente de navegación principal con animaciones y diseño responsive
@@ -11,7 +10,6 @@ import useSmoothScroll from '../../hooks/useSmoothScroll';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { scrollTo } = useSmoothScroll();
 
   // Detectar scroll para cambiar el estilo del navbar
   useEffect(() => {
@@ -34,11 +32,32 @@ const Navbar = () => {
     const targetElement = document.getElementById(targetId);
     
     if (targetElement) {
-      scrollTo(targetElement, {
-        offset: -80,
-        duration: 1500,
-        easing: [0.25, 0.0, 0.35, 1.0]
-      });
+      // Scroll suave con animación mejorada
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - 80; // 80px es la altura del navbar
+      
+      // Animación suave con efecto de desaceleración
+      const startPosition = window.pageYOffset;
+      const distance = offsetPosition - startPosition;
+      const duration = 1000; // duración en milisegundos
+      let start = null;
+      
+      function animation(currentTime) {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        // Función de interpolación con efecto easeInOutQuad
+        const easeInOutQuad = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        
+        window.scrollTo(0, startPosition + distance * easeInOutQuad(progress));
+        
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation);
+        }
+      }
+      
+      requestAnimationFrame(animation);
       
       if (isMenuOpen) {
         setIsMenuOpen(false);
@@ -84,6 +103,7 @@ const Navbar = () => {
         left: 0, 
         right: 0, 
         zIndex: 1000,
+        width: '100%'
       }}
       className={`transition-all duration-300 ${
         isScrolled ? 'py-3 bg-white shadow-md' : 'py-5 bg-white shadow-sm'
@@ -119,7 +139,8 @@ const Navbar = () => {
           <Button 
             variant="primary" 
             size="md" 
-            className="bg-primary-600 hover:bg-primary-700 text-white font-medium px-5 py-2 rounded-full transition-all duration-300"
+            className="shadow-sm"
+            onClick={(e) => handleNavLinkClick(e, '#services')}
           >
             Agendar cita
           </Button>
@@ -182,7 +203,12 @@ const Navbar = () => {
                 ))}
               </ul>
               <div className="mt-auto mb-10 flex justify-center">
-                <Button variant="primary" size="lg" className="w-full max-w-xs">
+                <Button 
+                  variant="primary" 
+                  size="lg" 
+                  className="w-full max-w-xs"
+                  onClick={(e) => handleNavLinkClick(e, '#services')}
+                >
                   Agendar cita
                 </Button>
               </div>

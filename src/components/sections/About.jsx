@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import SectionTitle from '../ui/SectionTitle';
 import GlassCard from '../ui/GlassCard';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
+import aboutImage from '../../assets/images/Langela.png';
 import useParallax from '../../hooks/useParallax';
 
 /**
@@ -74,9 +75,47 @@ const About = () => {
       className="py-20 relative overflow-hidden"
     >
       {/* Elementos decorativos */}
-      <div className="absolute top-40 right-0 w-96 h-96 rounded-full bg-yellow-200/40 blur-3xl -z-10"></div>
-      <div className="absolute bottom-20 left-0 w-64 h-64 rounded-full bg-green-200/40 blur-3xl -z-10"></div>
-      <div className="absolute top-1/3 right-1/4 w-48 h-48 rounded-full bg-blue-200/30 blur-2xl -z-10"></div>
+      <motion.div 
+        className="absolute top-40 right-0 w-96 h-96 rounded-full bg-primary-100/40 blur-3xl -z-10"
+        animate={{ 
+          y: [0, -30, 0],
+          x: [0, 15, 0]
+        }}
+        transition={{
+          duration: 18,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      ></motion.div>
+      
+      <motion.div 
+        className="absolute bottom-20 left-0 w-64 h-64 rounded-full bg-secondary-100/40 blur-3xl -z-10"
+        animate={{ 
+          y: [0, 30, 0],
+          x: [0, -20, 0]
+        }}
+        transition={{
+          duration: 15,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      ></motion.div>
+      
+      <motion.div 
+        className="absolute top-1/3 right-1/4 w-48 h-48 rounded-full bg-accent-100/30 blur-2xl -z-10"
+        animate={{ 
+          y: [0, 20, 0],
+          scale: [1, 1.1, 1]
+        }}
+        transition={{
+          duration: 12,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      ></motion.div>
       
       <div className="container mx-auto px-4">
         <SectionTitle 
@@ -89,11 +128,63 @@ const About = () => {
           <motion.div 
             className="h-[500px] rounded-2xl overflow-hidden order-2 lg:order-1 lg:sticky lg:top-32"
           >
-            {/* Aquí irá la imagen del profesional cuando la proporcione el cliente */}
-            <div className="absolute inset-0 flex items-center justify-center bg-neutral-100 rounded-2xl">
-              <div className="text-neutral-400 text-lg border-2 border-dashed border-neutral-300 rounded-lg p-8 bg-white/50">
-                Espacio para tu fotografía profesional
+            {/* Fondo con patrón de colores */}
+            <div className="absolute inset-0 bg-gradient-to-br from-secondary-50/70 via-primary-50/70 to-accent-50/70 rounded-2xl overflow-hidden">
+              {/* Formas decorativas */}
+              <motion.div 
+                className="absolute top-10 right-10 w-36 h-36 rounded-full bg-secondary-200/30 blur-xl"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  opacity: [0.3, 0.5, 0.3]
+                }}
+                transition={{
+                  duration: 8,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatType: "mirror"
+                }}
+              ></motion.div>
+              
+              <motion.div 
+                className="absolute bottom-20 left-10 w-48 h-48 rounded-full bg-primary-200/30 blur-xl"
+                animate={{ 
+                  y: [0, 15, 0],
+                  opacity: [0.2, 0.4, 0.2]
+                }}
+                transition={{
+                  duration: 10,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatType: "mirror"
+                }}
+              ></motion.div>
+              
+              <motion.div 
+                className="absolute top-1/3 left-1/4 w-32 h-32 rounded-full bg-accent-100/30 blur-lg"
+                animate={{ 
+                  x: [0, 10, 0],
+                  y: [0, -10, 0],
+                  opacity: [0.2, 0.4, 0.2]
+                }}
+                transition={{
+                  duration: 12,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatType: "mirror"
+                }}
+              ></motion.div>
+              
+              {/* Patrones abstractos */}
+              <div className="absolute inset-0 opacity-5 mix-blend-overlay">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#5F6CAF_1px,_transparent_1px)] bg-[length:20px_20px]"></div>
               </div>
+              
+              <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent"></div>
+            </div>
+            
+            {/* Imagen del profesional */}
+            <div className="absolute inset-0 flex items-center justify-center bg-neutral-100 rounded-2xl">
+              <img src={aboutImage} alt="Ángela Sophia" className="w-full h-full object-cover" />
             </div>
             
             {/* Decoración */}
@@ -120,7 +211,7 @@ const About = () => {
               className="text-lg text-neutral-700 mb-6"
               variants={itemVariants}
             >
-              Soy psicóloga clínica con más de 8 años de experiencia ayudando a personas a superar desafíos emocionales y mejorar su calidad de vida. Me especializo en terapia cognitivo-conductual, un enfoque basado en evidencia que ha demostrado excelentes resultados.
+              Soy psicóloga con un enfoque fresco y actualizado en terapia cognitivo-conductual. Mi formación académica reciente me ha permitido incorporar las técnicas y métodos más innovadores para ayudar a personas a superar desafíos emocionales y mejorar su calidad de vida.
             </motion.p>
             
             <motion.p 
@@ -135,16 +226,16 @@ const About = () => {
               variants={itemVariants}
             >
               <div className="text-center">
-                <span className="block text-3xl font-bold text-primary-600">+500</span>
-                <span className="text-neutral-600">Pacientes atendidos</span>
+                <span className="block text-3xl font-bold text-primary-600">Empatía</span>
+                <span className="text-neutral-600">Enfoque personalizado</span>
               </div>
               <div className="text-center">
-                <span className="block text-3xl font-bold text-primary-600">8+</span>
-                <span className="text-neutral-600">Años de experiencia</span>
+                <span className="block text-3xl font-bold text-primary-600">Innovación</span>
+                <span className="text-neutral-600">Técnicas actualizadas</span>
               </div>
               <div className="text-center">
-                <span className="block text-3xl font-bold text-primary-600">3</span>
-                <span className="text-neutral-600">Especializaciones</span>
+                <span className="block text-3xl font-bold text-primary-600">Compromiso</span>
+                <span className="text-neutral-600">Con tu bienestar</span>
               </div>
             </motion.div>
             
@@ -155,19 +246,19 @@ const About = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-600 mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>Licenciatura en Psicología - Universidad Nacional</span>
+                  <span>Licenciatura en Psicología - Universidad Católica de Pereira</span>
                 </li>
                 <li className="flex items-start">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-600 mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>Maestría en Terapia Cognitivo-Conductual - Universidad Central</span>
+                  <span>Formación continua en Terapia Cognitivo-Conductual</span>
                 </li>
                 <li className="flex items-start">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-600 mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>Especialización en Manejo del Estrés y Ansiedad - Instituto de Salud Mental</span>
+                  <span>Seminarios especializados en Manejo del Estrés y Ansiedad</span>
                 </li>
               </ul>
             </motion.div>

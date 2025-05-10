@@ -25,13 +25,35 @@ const GlassCard = ({ children, className = '', ...rest }) => {
       }
     }
   };
+  
+  const hoverVariants = {
+    initial: { 
+      scale: 1,
+      boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.25)"
+    },
+    hover: { 
+      scale: 1.02,
+      boxShadow: "0 15px 40px 0 rgba(31, 38, 135, 0.35)"
+    },
+    tap: { 
+      scale: 0.98 
+    }
+  };
 
   return (
     <motion.div
       ref={ref}
       initial="hidden"
       animate={controls}
-      variants={cardVariants}
+      variants={{
+        hidden: cardVariants.hidden,
+        visible: cardVariants.visible
+      }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 15 
+      }}
       className={`glass rounded-2xl p-6 md:p-8 ${className}`}
       {...rest}
     >

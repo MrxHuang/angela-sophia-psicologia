@@ -23,34 +23,32 @@ const Button = ({
 }) => {
   // Variantes de estilo
   const variants = {
-    primary: 'bg-primary-600 hover:bg-primary-700 text-white',
-    secondary: 'bg-secondary-600 hover:bg-secondary-700 text-white',
-    outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 hover:border-primary-700',
-    ghost: 'text-primary-600 hover:bg-primary-50 hover:text-primary-700'
+    primary: 'bg-[#5F6CAF] hover:bg-[#4A5899] text-white',
+    secondary: 'bg-[#4A8FE7] hover:bg-[#337AD6] text-white',
+    outline: 'border-2 border-[#5F6CAF] text-[#5F6CAF] hover:bg-[#EEF1FF] hover:border-[#4A5899]',
+    ghost: 'text-[#5F6CAF] hover:bg-[#EEF1FF] hover:text-[#4A5899]'
   };
   
-  // Tamaños
+  // Tamaños adaptados a responsive
   const sizes = {
-    sm: 'py-1 px-3 text-sm',
-    md: 'py-2 px-5 text-base',
-    lg: 'py-3 px-8 text-lg'
+    sm: 'py-1 px-2 sm:px-3 text-xs sm:text-sm',
+    md: 'py-1.5 sm:py-2 px-4 sm:px-5 text-sm sm:text-base',
+    lg: 'py-2 sm:py-3 px-6 sm:px-8 text-base sm:text-lg'
   };
   
-  // Animación al hacer hover
+  // Mantenemos la definición pero ya no usamos activamente estas variantes
   const buttonVariants = {
     initial: { scale: 1 },
-    hover: { scale: 1.05 },
+    hover: { scale: 1.03 },
     tap: { scale: 0.98 }
   };
 
   return (
     <motion.button
-      className={`rounded-full font-medium transition-all duration-300 ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`rounded-full font-medium transition-all duration-300 flex items-center justify-center ${variants[variant]} ${sizes[size]} ${className}`}
       onClick={onClick}
       initial="initial"
-      whileHover="hover"
-      whileTap="tap"
-      variants={buttonVariants}
+      whileTap={{ scale: 0.98 }}
       {...rest}
     >
       {children}

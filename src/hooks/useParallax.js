@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 
 /**
  * Hook personalizado para crear efectos parallax basados en el scroll
- * compatible con Locomotive Scroll
  * @param {number} speed - Velocidad del efecto parallax (positivo: mismo sentido que el scroll, negativo: sentido contrario)
  * @returns {Object} - Objeto con el valor de transformación para aplicar al elemento
  */
@@ -11,7 +10,6 @@ export const useParallax = (speed = 0.5) => {
   const ref = useRef(null);
   
   useEffect(() => {
-    // Para compatibilidad con Locomotive Scroll necesitamos usar los atributos data-scroll
     const handleScroll = () => {
       if (!ref.current) return;
       

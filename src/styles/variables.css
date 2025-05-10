@@ -1,7 +1,23 @@
 :root {
-  --primary-color: #4f46e5; /* Indigo más vibrante */
-  --secondary-color: #ec4899; /* Rosa más vibrante */
-  --background-color: #f5f3ff; /* Fondo con un toque de color */
-  --text-color: #0f172a;
-  --accent-color: #8b5cf6; /* Color adicional para acentos */
+  /* Colores principales - Paleta moderna azul-violeta */
+  --primary-color: #5F6CAF; /* Violeta moderado - para elementos principales */
+  --secondary-color: #4A8FE7; /* Azul brillante - para acentos y elementos secundarios */
+  --accent-color: #8E44AD; /* Violeta profundo - para elementos destacados */
+  
+  /* Colores de fondo */
+  --background-color: #F8FAFC; /* Gris muy claro con tono azulado para fondos */
+  
+  /* Colores de texto */
+  --text-color: #334155; /* Gris azulado oscuro para texto principal */
+  --text-light-color: #64748B; /* Gris azulado medio para texto secundario */
+  
+  /* Variables para botones */
+  --button-primary-bg: #5F6CAF;
+  --button-primary-hover: #4A5899;
+  --button-secondary-bg: #4A8FE7;
+  --button-secondary-hover: #337AD6;
+  
+  /* Variables para sombras y efectos */
+  --shadow-color: rgba(51, 65, 85, 0.1);
+  --shadow-color-hover: rgba(51, 65, 85, 0.2);
 } 

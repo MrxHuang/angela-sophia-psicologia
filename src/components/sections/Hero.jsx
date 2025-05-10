@@ -56,10 +56,63 @@ const Hero = () => {
     >
       {/* Fondo con elementos decorativos */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-green-200/40 blur-3xl"></div>
-        <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-blue-200/40 blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/4 w-40 h-40 rounded-full bg-yellow-200/30 blur-2xl"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-56 h-56 rounded-full bg-pink-200/30 blur-2xl"></div>
+        <motion.div 
+          className="absolute top-20 right-10 w-64 h-64 rounded-full bg-primary-200/40 blur-3xl"
+          animate={{ 
+            y: [0, -20, 0],
+            x: [0, 10, 0],
+            scale: [1, 1.05, 1]
+          }}
+          transition={{
+            duration: 15,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "mirror"
+          }}
+        ></motion.div>
+        
+        <motion.div 
+          className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-secondary-200/40 blur-3xl"
+          animate={{ 
+            y: [0, 25, 0],
+            x: [0, -15, 0],
+            scale: [1, 1.08, 1]
+          }}
+          transition={{
+            duration: 18,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "mirror"
+          }}
+        ></motion.div>
+        
+        <motion.div 
+          className="absolute top-1/2 left-1/4 w-40 h-40 rounded-full bg-accent-100/30 blur-2xl"
+          animate={{ 
+            y: [0, 15, 0],
+            opacity: [0.3, 0.6, 0.3]
+          }}
+          transition={{
+            duration: 10,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "mirror"
+          }}
+        ></motion.div>
+        
+        <motion.div 
+          className="absolute bottom-1/3 right-1/4 w-56 h-56 rounded-full bg-primary-100/30 blur-2xl"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.5, 0.2]
+          }}
+          transition={{
+            duration: 12,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "mirror"
+          }}
+        ></motion.div>
       </div>
       
       {/* Elementos decorativos */}
@@ -77,6 +130,53 @@ const Hero = () => {
         variants={decorationVariants}
         transition={{ delay: 0.3 }}
       ></motion.div>
+
+      {/* Elementos decorativos adicionales estilo glassmorphism */}
+      <div className="absolute inset-0 z-0">
+        <motion.div 
+          className="absolute top-1/4 right-1/4 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-primary-400/30 via-secondary-300/20 to-accent-200/40 blur-3xl"
+          animate={{
+            scale: [1, 1.1, 1],
+            x: [0, 10, 0],
+            y: [0, -10, 0],
+          }}
+          transition={{
+            duration: 20,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "mirror"
+          }}
+        ></motion.div>
+        
+        <motion.div 
+          className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-accent-300/20 via-primary-300/20 to-secondary-400/30 blur-3xl"
+          animate={{
+            scale: [1, 1.15, 1],
+            x: [0, -10, 0],
+            y: [0, 15, 0],
+          }}
+          transition={{
+            duration: 25,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "mirror"
+          }}
+        ></motion.div>
+        
+        <motion.div 
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-primary-200/20 via-secondary-200/30 to-accent-100/20 blur-3xl"
+          animate={{
+            scale: [1, 1.05, 1],
+            opacity: [0.5, 0.7, 0.5],
+          }}
+          transition={{
+            duration: 15,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "mirror"
+          }}
+        ></motion.div>
+      </div>
       
       {/* Contenido principal */}
       <div className="container mx-auto px-4 z-10">
@@ -99,8 +199,8 @@ const Hero = () => {
             className="text-lg md:text-xl text-neutral-700 mb-8 max-w-2xl mx-auto"
             variants={itemVariants}
           >
-            Soy Ángela Sophia, psicóloga especializada en terapia cognitivo-conductual. 
-            Te acompaño en tu camino hacia el bienestar emocional con un enfoque personalizado y profesional.
+            Soy Ángela Sophia, psicóloga con un enfoque innovador en terapia cognitivo-conductual. 
+            Te acompaño en tu camino hacia el bienestar emocional con una perspectiva fresca y métodos actualizados.
           </motion.p>
           
           <motion.div 
@@ -108,49 +208,20 @@ const Hero = () => {
             variants={itemVariants}
           >
             <Button 
-              variant="primary" 
-              size="lg"
-              className="bg-green-500 hover:bg-green-600 text-white w-full sm:w-auto"
-            >
-              Agendar una consulta
-            </Button>
-            <Button 
               variant="outline" 
               size="lg"
-              className="border-green-500 text-green-600 hover:bg-green-50 w-full sm:w-auto"
+              className="w-full shadow-md"
+              onClick={() => {
+                const aboutElement = document.getElementById('about');
+                if (aboutElement) {
+                  aboutElement.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
               Conocer más
             </Button>
           </motion.div>
-          
-          {/* Indicador de scroll */}
-          <motion.div 
-            className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0,
-              transition: {
-                delay: 1.5,
-                duration: 0.8,
-                ease: "easeOut",
-                repeat: Infinity,
-                repeatType: "reverse"
-              }
-            }}
-          >
-          </motion.div>
         </motion.div>
-      </div>
-      
-      {/* Espacio para imagen o ilustración */}
-      <div className="absolute right-0 bottom-0 w-full md:w-1/2 h-1/2 md:h-2/3 z-0 opacity-20 md:opacity-100">
-        {/* Aquí irá la imagen principal cuando la proporcione el cliente */}
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="text-neutral-300 text-lg border-2 border-dashed border-neutral-300 rounded-lg p-8 bg-white/50">
-            Espacio para imagen principal
-          </div>
-        </div>
       </div>
     </section>
   );
