@@ -11,6 +11,7 @@ Este proyecto es una landing page moderna y personalizada para servicios de psic
 - **Efectos visuales avanzados** como glassmorphism, gradientes difuminados y animaciones sutiles
 - **Animaciones fluidas** utilizando Framer Motion para transiciones elegantes
 - **Sistema de scroll suave** optimizado para una navegación agradable
+- **Scrollbar personalizado** con gradientes azul-violeta que refleja la identidad visual del sitio
 - **Tipografía profesional** con jerarquía visual clara y espaciado optimizado
 - **Totalmente responsive** para una experiencia perfecta en dispositivos móviles y de escritorio
 - **Mapa interactivo** integrado con Leaflet y OpenStreetMap
@@ -63,6 +64,7 @@ src/
 - **Gradientes animados** - Fondos con gradientes suaves que se animan lentamente
 - **Animaciones de entrada** - Elementos que aparecen con animaciones suaves al entrar en el viewport
 - **Efectos hover** - Interacciones visuales al pasar el cursor sobre elementos interactivos
+- **Scrollbar personalizado** - Barra de desplazamiento con gradiente azul-violeta para una experiencia visual coherente
 - **Mapa interactivo** - Visualización de la ubicación con marcador personalizado y opción para abrir en Google Maps
 - **Navegación responsiva** - Menú hamburguesa en dispositivos móviles con animaciones de apertura y cierre
 
@@ -72,7 +74,7 @@ src/
 - Implementación de mapa interactivo con Leaflet y OpenStreetMap
 - Integración de botones de WhatsApp con mensajes predefinidos para cada servicio
 - Optimización del rendimiento en dispositivos móviles
-- Mejora del sistema de scroll suave
+- Mejora del sistema de scroll suave y scrollbar personalizado
 - Rediseño responsive de todas las secciones
 
 ## Instalación y ejecución

@@ -1,5 +1,7 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 import { motion } from 'framer-motion';
 
 /**
@@ -14,7 +16,10 @@ export default function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
         >
-            <Home />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
         </motion.div>
     );
 }

@@ -8,9 +8,6 @@ import { socialMedia } from './config';
  */
 export const generateWhatsAppUrl = (message) => {
   const encodedMessage = encodeURIComponent(message);
-  // El enlace de WhatsApp debe estar en el formato correcto
-  // Si ya contiene "?text=" (como es común en los enlaces wa.me), se usa como está
-  // Si no, agregamos "?text=" para crear una URL válida
   if (socialMedia.whatsapp.includes('?')) {
     return `${socialMedia.whatsapp}&text=${encodedMessage}`;
   } else {

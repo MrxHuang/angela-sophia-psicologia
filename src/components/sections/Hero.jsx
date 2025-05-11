@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '../ui/Button';
 import useParallax from '../../hooks/useParallax';
+import BlurText from '../ui/BlurText';
+import Threads from '../ui/Threads';
 
 /**
  * Componente Hero para la sección principal de la landing page
@@ -52,130 +54,16 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="min-h-screen relative flex items-center justify-center overflow-hidden py-20"
+      className="min-h-screen relative flex items-center justify-center overflow-hidden py-20 bg-white"
     >
-      {/* Fondo con elementos decorativos */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <motion.div 
-          className="absolute top-20 right-10 w-64 h-64 rounded-full bg-primary-200/40 blur-3xl"
-          animate={{ 
-            y: [0, -20, 0],
-            x: [0, 10, 0],
-            scale: [1, 1.05, 1]
-          }}
-          transition={{
-            duration: 15,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatType: "mirror"
-          }}
-        ></motion.div>
-        
-        <motion.div 
-          className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-secondary-200/40 blur-3xl"
-          animate={{ 
-            y: [0, 25, 0],
-            x: [0, -15, 0],
-            scale: [1, 1.08, 1]
-          }}
-          transition={{
-            duration: 18,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatType: "mirror"
-          }}
-        ></motion.div>
-        
-        <motion.div 
-          className="absolute top-1/2 left-1/4 w-40 h-40 rounded-full bg-accent-100/30 blur-2xl"
-          animate={{ 
-            y: [0, 15, 0],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{
-            duration: 10,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatType: "mirror"
-          }}
-        ></motion.div>
-        
-        <motion.div 
-          className="absolute bottom-1/3 right-1/4 w-56 h-56 rounded-full bg-primary-100/30 blur-2xl"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.5, 0.2]
-          }}
-          transition={{
-            duration: 12,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatType: "mirror"
-          }}
-        ></motion.div>
-      </div>
-      
-      {/* Elementos decorativos */}
-      <motion.div 
-        className="absolute top-20 right-10 w-64 h-64 rounded-full bg-secondary-300/20 blur-3xl"
-        initial="hidden"
-        animate="visible"
-        variants={decorationVariants}
-      ></motion.div>
-      
-      <motion.div 
-        className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-primary-300/20 blur-3xl"
-        initial="hidden"
-        animate="visible"
-        variants={decorationVariants}
-        transition={{ delay: 0.3 }}
-      ></motion.div>
-
-      {/* Elementos decorativos adicionales estilo glassmorphism */}
-      <div className="absolute inset-0 z-0">
-        <motion.div 
-          className="absolute top-1/4 right-1/4 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-primary-400/30 via-secondary-300/20 to-accent-200/40 blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            x: [0, 10, 0],
-            y: [0, -10, 0],
-          }}
-          transition={{
-            duration: 20,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatType: "mirror"
-          }}
-        ></motion.div>
-        
-        <motion.div 
-          className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-accent-300/20 via-primary-300/20 to-secondary-400/30 blur-3xl"
-          animate={{
-            scale: [1, 1.15, 1],
-            x: [0, -10, 0],
-            y: [0, 15, 0],
-          }}
-          transition={{
-            duration: 25,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatType: "mirror"
-          }}
-        ></motion.div>
-        
-        <motion.div 
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-primary-200/20 via-secondary-200/30 to-accent-100/20 blur-3xl"
-          animate={{
-            scale: [1, 1.05, 1],
-            opacity: [0.5, 0.7, 0.5],
-          }}
-          transition={{
-            duration: 15,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatType: "mirror"
-          }}
-        ></motion.div>
+      {/* Fondo con Threads - Solo visible en dispositivos no móviles */}
+      <div className="absolute inset-0 z-0 opacity-30 hidden md:block">
+        <Threads
+          amplitude={1}
+          distance={0}
+          enableMouseInteraction={true}
+          color={[0.37, 0.42, 0.69]} // Color primario (violeta-azul) de la página
+        />
       </div>
       
       {/* Contenido principal */}
@@ -187,21 +75,47 @@ const Hero = () => {
           variants={containerVariants}
           style={parallaxText.style}
         >
-          <motion.h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6"
+          <motion.div 
+            className="relative mb-6"
             variants={itemVariants}
           >
-            <span className="block">Encuentra tu</span>
-            <span className="text-primary-600">equilibrio emocional</span>
-          </motion.h1>
+            <motion.h1 
+              className="text-4xl md:text-6xl lg:text-7xl font-display font-bold relative z-10"
+            >
+              <BlurText 
+                text="Encuentra tu" 
+                className="block font-bold text-[#2c3655] drop-shadow-sm" 
+                delay={100}
+                direction="top"
+                animateBy="words"
+                stepDuration={0.5}
+              />
+              <BlurText 
+                text="equilibrio emocional" 
+                className="text-primary-600 font-bold drop-shadow-sm" 
+                delay={100}
+                direction="top"
+                animateBy="words"
+                stepDuration={0.5}
+              />
+            </motion.h1>
+            {/* Sutil fondo para mejorar contraste */}
+            <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px] rounded-xl -z-[1]"></div>
+          </motion.div>
           
-          <motion.p 
-            className="text-lg md:text-xl text-neutral-700 mb-8 max-w-2xl mx-auto"
+          <motion.div 
+            className="relative mb-8"
             variants={itemVariants}
           >
-            Soy Ángela Sophia, psicóloga con un enfoque innovador en terapia cognitivo-conductual. 
-            Te acompaño en tu camino hacia el bienestar emocional con una perspectiva fresca y métodos actualizados.
-          </motion.p>
+            <motion.p 
+              className="text-lg md:text-xl text-neutral-700 max-w-2xl mx-auto relative z-10"
+            >
+              Soy Ángela Sophia, psicóloga con un enfoque innovador en terapia cognitivo-conductual. 
+              Te acompaño en tu camino hacia el bienestar emocional con una perspectiva fresca y métodos actualizados.
+            </motion.p>
+            {/* Sutil fondo para mejorar contraste */}
+            <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px] rounded-lg -z-[1]"></div>
+          </motion.div>
           
           <motion.div 
             className="flex flex-col sm:flex-row justify-center gap-4 w-full max-w-md mx-auto"
@@ -210,7 +124,7 @@ const Hero = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="w-full shadow-md"
+              className="w-full shadow-md relative z-10 bg-primary-50 border-primary-200 text-primary-800 hover:bg-primary-100"
               onClick={() => {
                 const aboutElement = document.getElementById('about');
                 if (aboutElement) {

@@ -12,15 +12,19 @@
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
+    "@motion-canvas/2d": "^3.17.2",
+    "@motion-canvas/core": "^3.17.2",
     "@react-google-maps/api": "^2.20.6",
     "@tailwindcss/vite": "^4.1.6",
     "framer-motion": "^12.10.5",
     "landing-ang": "file:",
     "leaflet": "^1.9.4",
+    "ogl": "^1.0.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-intersection-observer": "^9.16.0",
     "react-leaflet": "^5.0.0",
+    "react-router-dom": "^7.6.0",
     "react-scroll": "^1.9.3",
     "tailwindcss": "^4.1.6"
   },
