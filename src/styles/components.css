@@ -207,4 +207,15 @@
 
 .fade-in {
   animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Eliminar cualquier gradiente en los títulos de sección */
+.section-title h2,
+h2.text-primary-800,
+.font-display.font-bold {
+  background: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: var(--primary-color-800) !important;
 } 

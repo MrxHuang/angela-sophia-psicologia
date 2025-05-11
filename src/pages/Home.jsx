@@ -1,8 +1,8 @@
 import React from 'react';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
+import Timeline from '../components/sections/Timeline';
 import Services from '../components/sections/Services';
-import Contact from '../components/sections/Contact';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 
@@ -18,8 +18,8 @@ const Home = () => {
       <main style={{ paddingTop: '80px' }}>
         <Hero />
         <About />
+        <Timeline />
         <Services />
-        <Contact />
       </main>
       <Footer />
     </div>

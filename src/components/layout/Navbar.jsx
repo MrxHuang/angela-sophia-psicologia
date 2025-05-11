@@ -69,8 +69,9 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Inicio', href: '#home' },
     { name: 'Sobre mí', href: '#about' },
+    { name: 'Proceso', href: '#timeline' },
     { name: 'Servicios', href: '#services' },
-    { name: 'Contacto', href: '#contact' }
+    { name: 'Redes Sociales', href: '#social' }
   ];
 
   // Variantes para animaciones
@@ -97,18 +98,10 @@ const Navbar = () => {
       initial="initial"
       animate="animate"
       variants={navbarVariants}
-      style={{ 
-        position: 'fixed', 
-        top: 0, 
-        left: 0, 
-        right: 0, 
-        zIndex: 1000,
-        width: '100%'
-      }}
-      className={`transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 w-full z-[1000] transition-all duration-300 ${
         isScrolled 
-          ? 'py-2 md:py-3 bg-white/95 shadow-lg backdrop-blur-sm' 
-          : 'py-3 md:py-5 bg-white/90 shadow-sm'
+          ? 'py-2 md:py-3 bg-white shadow-lg' 
+          : 'py-3 md:py-5 bg-white shadow-sm'
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -191,7 +184,7 @@ const Navbar = () => {
             variants={menuVariants}
             className="md:hidden fixed top-[53px] left-0 right-0 bottom-0 z-40 flex flex-col"
           >
-            <div className="absolute inset-0 bg-white/95 backdrop-blur-md -z-10"></div>
+            <div className="absolute inset-0 bg-white -z-10"></div>
             <nav className="container mx-auto px-6 py-8 flex flex-col h-full">
               <ul className="flex flex-col space-y-6">
                 {navLinks.map((link) => (

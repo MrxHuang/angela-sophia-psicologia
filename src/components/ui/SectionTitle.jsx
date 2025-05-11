@@ -52,9 +52,9 @@ const SectionTitle = ({
   };
 
   return (
-    <div className={`mb-8 sm:mb-10 md:mb-12 ${alignmentClasses[align]} ${className}`} ref={ref}>
+    <div className={`section-title mb-8 sm:mb-10 md:mb-12 ${alignmentClasses[align]} ${className}`} ref={ref}>
       <motion.h2 
-        className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-2 sm:mb-4"
+        className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-2 sm:mb-4 text-primary-800"
         initial="hidden"
         animate={controls}
         variants={titleVariants}

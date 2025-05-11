@@ -17,6 +17,7 @@
     "@react-google-maps/api": "^2.20.6",
     "@tailwindcss/vite": "^4.1.6",
     "framer-motion": "^12.10.5",
+    "gsap": "^3.13.0",
     "landing-ang": "file:",
     "leaflet": "^1.9.4",
     "ogl": "^1.0.11",

@@ -1,4 +1,3 @@
-
 export const locationConfig = {
     coordinates: {
         lat: 4.806389,
@@ -21,6 +20,5 @@ export const contactInfo = {
 export const socialMedia = {
     instagram: "https://www.instagram.com/psic.angelasophia/",
     tiktok: "https://www.tiktok.com/@psic.angelasophia",
-    x: "https://x.com/angelasophia_psi",
-    whatsapp: "https://wa.me/573215841483"
+    whatsapp: "https://wa.me/573215841483?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20tus%20servicios."
 };
