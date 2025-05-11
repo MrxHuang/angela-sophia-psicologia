@@ -116,12 +116,33 @@ Para desplegar la aplicación en GitHub Pages:
    npm install gh-pages --save-dev
    ```
 
-2. Ejecuta el comando de despliegue:
+2. **Configuración importante para GitHub Pages:**
+   - En `vite.config.js`, configura la base URL para que coincida con el nombre de tu repositorio:
+     ```javascript
+     export default defineConfig({
+       plugins: [react(), tailwindcss()],
+       base: '/angela-sophia-psicologia/'
+     })
+     ```
+   - En `src/main.jsx`, usa `HashRouter` 
+     ```javascript
+     import { HashRouter } from 'react-router-dom'
+     
+     createRoot(document.getElementById('root')).render(
+       <StrictMode>
+         <HashRouter>
+           <App />
+         </HashRouter>
+       </StrictMode>,
+     )
+     ```
+
+3. Ejecuta el comando de despliegue:
    ```
    npm run deploy
    ```
 
-Este proceso generará una versión optimizada de la aplicación y la publicará en el repositorio configurado en el `package.json` bajo la propiedad `homepage`.
+Este proceso generará una versión optimizada de la aplicación y la publicará en el repositorio configurado en el `package.json` bajo la propiedad `homepage`. La aplicación será accesible en la URL: https://MrxHuang.github.io/angela-sophia-psicologia/
 
 ## Mejoras Futuras
 
