@@ -196,7 +196,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <h5 className="font-medium text-primary-700 mb-1">Dirección</h5>
-                    <span className="text-neutral-600">Calle Principal 123, Ciudad</span>
+                    <span className="text-neutral-600">{locationConfig.address}	</span>
                   </div>
                 </li>
                 <li className="bg-primary-50/50 p-4 rounded-lg flex items-start">
@@ -207,7 +207,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <h5 className="font-medium text-primary-700 mb-1">Email</h5>
-                    <span className="text-neutral-600">contacto@angelasophia.com</span>
+                    <span className="text-neutral-600">{contactInfo.email}</span>
                   </div>
                 </li>
                 <li className="bg-primary-50/50 p-4 rounded-lg flex items-start">
@@ -218,7 +218,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <h5 className="font-medium text-primary-700 mb-1">Teléfono</h5>
-                    <span className="text-neutral-600">+1 (555) 123-4567</span>
+                    <span className="text-neutral-600">{contactInfo.phone}</span>
                   </div>
                 </li>
                 <li className="bg-primary-50/50 p-4 rounded-lg flex items-start">

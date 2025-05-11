@@ -11,7 +11,7 @@ export const locationConfig = {
 
 export const contactInfo = {
     email: "contacto@angelasophia.com",
-    phone: "+57 315 123 4567",
+    phone: "+57 321 584 1483",
     schedule: {
         weekdays: "Lunes - Viernes: 9:00 - 18:00",
         weekend: "Sábado: 10:00 - 14:00"
