@@ -118,7 +118,7 @@ const Navbar = () => {
           onClick={(e) => handleNavLinkClick(e, '#home')}
           className="flex items-center transition-all duration-300 hover:opacity-80"
         >
-          <span className="text-xl md:text-2xl font-display font-bold text-primary-700 mr-1">Ángela</span>
+          <span className="text-xl md:text-2xl font-display font-bold text-primary-700 mr-1">Angela</span>
           <span className="text-xl md:text-2xl font-display font-bold text-secondary-600">Sophia</span>
         </a>
 
@@ -144,7 +144,7 @@ const Navbar = () => {
             className="shadow-sm hover:shadow-md ml-3"
             onClick={(e) => handleNavLinkClick(e, '#services')}
           >
-            <span className="hidden sm:inline">Agendar</span> cita
+            <span className="hidden sm:inline">Agendar cita</span>
           </Button>
         </nav>
 

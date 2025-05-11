@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import { motion } from 'framer-motion';
 
 /**
  * Componente principal de la aplicación
@@ -10,16 +9,25 @@ import { motion } from 'framer-motion';
  * @returns {React.ReactElement} Componente App
  */
 export default function App() {
+    // Asegurar que el texto sea visible
+    useEffect(() => {
+        // Forzar visibilidad después de un breve retraso
+        const timer = setTimeout(() => {
+            document.querySelectorAll('h1, h2, .font-display').forEach(el => {
+                el.style.visibility = 'visible';
+                el.style.opacity = '1';
+            });
+        }, 100);
+        
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-        >
+        <div className="app-container">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
-        </motion.div>
+        </div>
     );
 }

@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Button from '../ui/Button';
 import useParallax from '../../hooks/useParallax';
-import BlurText from '../ui/BlurText';
 import Threads from '../ui/Threads';
 
 /**
@@ -11,9 +10,27 @@ import Threads from '../ui/Threads';
  * @returns {React.ReactElement} Componente Hero
  */
 const Hero = () => {
+  // Detectar dispositivos de bajo rendimiento
+  const [isLowPerf, setIsLowPerf] = useState(false);
+  
+  useEffect(() => {
+    // Detector básico para dispositivos móviles o de bajo rendimiento
+    const userAgent = navigator.userAgent || '';
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+    
+    // Detector de CPU menos potente (detección básica)
+    const cpuCores = navigator.hardwareConcurrency || 4;
+    const isLowCPU = cpuCores <= 4;
+    
+    // Comprobación de memoria disponible (solo funciona en Chrome)
+    const isLowRAM = navigator.deviceMemory && navigator.deviceMemory < 4;
+    
+    setIsLowPerf(isMobile || isLowCPU || isLowRAM);
+  }, []);
+  
   // Efectos parallax para diferentes elementos
   const parallaxBg = useParallax(0.2);
-  const parallaxText = useParallax(-0.1);
+  const parallaxText = useParallax(isLowPerf ? -0.05 : -0.1);
   
   // Variantes para animaciones
   const containerVariants = {
@@ -21,8 +38,8 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
+        delayChildren: 0.1,
+        staggerChildren: 0.1
       }
     }
   };
@@ -33,19 +50,19 @@ const Hero = () => {
       y: 0,
       opacity: 1,
       transition: { 
-        duration: 0.8,
+        duration: 0.6,
         ease: [0.22, 1, 0.36, 1]
       }
     }
   };
 
-  const decorationVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 0.8,
-      transition: { 
-        duration: 1.2,
+  const titleVariants = {
+    hidden: { opacity: 0, y: -30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
         ease: [0.22, 1, 0.36, 1]
       }
     }
@@ -59,9 +76,10 @@ const Hero = () => {
       {/* Fondo con Threads - Solo visible en dispositivos no móviles */}
       <div className="absolute inset-0 z-0 opacity-30 hidden md:block">
         <Threads
-          amplitude={1}
+          amplitude={0.8}
           distance={0}
-          enableMouseInteraction={true}
+          enableMouseInteraction={!isLowPerf}
+          lowPerformanceMode={isLowPerf}
           color={[0.37, 0.42, 0.69]} // Color primario (violeta-azul) de la página
         />
       </div>
@@ -79,26 +97,27 @@ const Hero = () => {
             className="relative mb-6"
             variants={itemVariants}
           >
-            <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-display font-bold relative z-10"
-            >
-              <BlurText 
-                text="Encuentra tu" 
-                className="block font-bold text-[#2c3655] drop-shadow-sm" 
-                delay={100}
-                direction="top"
-                animateBy="words"
-                stepDuration={0.5}
-              />
-              <BlurText 
-                text="equilibrio emocional" 
-                className="text-primary-600 font-bold drop-shadow-sm" 
-                delay={100}
-                direction="top"
-                animateBy="words"
-                stepDuration={0.5}
-              />
-            </motion.h1>
+            <div className="relative z-10">
+              <motion.h1 
+                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold"
+                initial={{ opacity: 0, filter: "blur(10px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 1, delay: 0.2 }}
+              >
+                <motion.span 
+                  className="block font-display font-bold text-[#2c3655] drop-shadow-sm"
+                  variants={titleVariants}
+                >
+                  Encuentra tu
+                </motion.span>
+                <motion.span 
+                  className="font-display font-bold text-primary-600 drop-shadow-sm"
+                  variants={titleVariants}
+                >
+                  equilibrio emocional
+                </motion.span>
+              </motion.h1>
+            </div>
             {/* Sutil fondo para mejorar contraste */}
             <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px] rounded-xl -z-[1]"></div>
           </motion.div>

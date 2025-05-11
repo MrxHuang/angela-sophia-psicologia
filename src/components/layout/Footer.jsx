@@ -2,10 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 import { socialMedia } from '../../utils/config';
-import Button from '../ui/Button';
 
 /**
- * Componente de pie de página con animaciones y diseño moderno
+ * Componente de pie de página simplificado con animaciones
  * 
  * @returns {React.ReactElement} Componente Footer
  */
@@ -37,56 +36,49 @@ const Footer = () => {
     }
   };
 
+  // Enlaces principales
+  const mainLinks = [
+    { name: 'Inicio', href: '#home' },
+    { name: 'Sobre mí', href: '#about' },
+    { name: 'Servicios', href: '#services' },
+    { name: 'Contacto', href: '#contact' }
+  ];
+
+  // Enlaces legales
+  const legalLinks = [
+    { name: 'Política de privacidad', href: '#' },
+    { name: 'Términos y condiciones', href: '#' },
+    { name: 'Aviso legal', href: '#' }
+  ];
+
   return (
     <div className="relative overflow-hidden">
       {/* Fondo decorativo */}
-      <div className="absolute top-0 right-0 w-2/3 h-96 rounded-full bg-primary-50/40 blur-3xl -z-10 translate-x-1/4 -translate-y-1/3"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-80 rounded-full bg-secondary-50/30 blur-3xl -z-10 -translate-x-1/4 translate-y-1/3"></div>
+      <div className="absolute top-0 right-0 w-2/3 h-64 rounded-full bg-primary-50/40 blur-3xl -z-10 translate-x-1/4 -translate-y-1/3"></div>
+      <div className="absolute bottom-0 left-0 w-1/2 h-64 rounded-full bg-secondary-50/30 blur-3xl -z-10 -translate-x-1/4 translate-y-1/3"></div>
       
       <motion.footer 
         ref={ref}
         initial="hidden"
         animate={controls}
         variants={footerVariants}
-        className="bg-white/80 backdrop-blur-sm py-16 relative z-0"
+        className="bg-white/80 backdrop-blur-sm py-8 relative z-0"
       >
-        {/* Newsletter / CTA superior */}
-        <div className="container mx-auto px-4 mb-16">
-          <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-6 md:p-10 relative overflow-hidden shadow-lg">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-200/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-secondary-200/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/3"></div>
-            
-            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="text-center md:text-left max-w-xl">
-                <h3 className="text-2xl md:text-3xl font-display font-bold mb-3 text-primary-800">¿Listo para comenzar tu camino?</h3>
-                <p className="text-lg text-neutral-700">Agenda tu primera consulta y empieza a descubrir un mejor bienestar emocional.</p>
-              </div>
-              <Button 
-                variant="primary" 
-                size="lg"
-                className="min-w-[180px] shadow-md"
-                onClick={(e) => handleNavLinkClick(e, '#contact')}
-              >
-                Contactar ahora
-              </Button>
-            </div>
-          </div>
-        </div>
-        
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+          {/* Sección principal */}
+          <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-8">
             {/* Logo y descripción */}
-            <div className="lg:col-span-1">
-              <div className="flex items-center mb-5">
+            <div className="md:max-w-xs">
+              <div className="flex items-center mb-3">
                 <h3 className="text-2xl font-display font-bold">
                   <span className="text-primary-700">Ángela</span>
                   <span className="text-secondary-600 ml-1">Sophia</span>
                 </h3>
               </div>
-              <p className="text-neutral-600 mb-6">
+              <p className="text-neutral-600 mb-4">
                 Psicóloga especializada en terapia cognitivo-conductual, ofreciendo un espacio seguro para tu bienestar emocional.
               </p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-3">
                 {/* Iconos de redes sociales */}
                 {Object.keys(socialMedia).map((platform) => (
                   <a 
@@ -117,132 +109,50 @@ const Footer = () => {
               </div>
             </div>
             
-            {/* Enlaces rápidos */}
-            <div className="lg:col-span-1">
-              <h4 className="text-lg font-bold mb-5 text-primary-800">Enlaces rápidos</h4>
-              <ul className="space-y-3">
-                <li>
+            {/* Enlaces principales */}
+            <div className="md:flex-1 md:max-w-xs">
+              <h4 className="text-lg font-bold mb-3 text-primary-800">Navegación</h4>
+              <div className="grid grid-cols-2 gap-y-2 gap-x-4">
+                {mainLinks.map((link) => (
                   <a 
-                    href="#home" 
-                    onClick={(e) => handleNavLinkClick(e, '#home')}
+                    key={link.name}
+                    href={link.href} 
+                    onClick={(e) => handleNavLinkClick(e, link.href)}
                     className="text-neutral-600 hover:text-primary-600 transition-colors flex items-center"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-2 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    Inicio
+                    {link.name}
                   </a>
-                </li>
-                <li>
-                  <a 
-                    href="#about" 
-                    onClick={(e) => handleNavLinkClick(e, '#about')}
-                    className="text-neutral-600 hover:text-primary-600 transition-colors flex items-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-2 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                    Sobre mí
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="#services" 
-                    onClick={(e) => handleNavLinkClick(e, '#services')}
-                    className="text-neutral-600 hover:text-primary-600 transition-colors flex items-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-2 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                    Servicios
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="#contact" 
-                    onClick={(e) => handleNavLinkClick(e, '#contact')}
-                    className="text-neutral-600 hover:text-primary-600 transition-colors flex items-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-2 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                    Contacto
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="#" 
-                    className="text-neutral-600 hover:text-primary-600 transition-colors flex items-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-2 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                    Política de privacidad
-                  </a>
-                </li>
-              </ul>
+                ))}
+              </div>
             </div>
             
-            {/* Contacto */}
-            <div className="lg:col-span-2">
-              <h4 className="text-lg font-bold mb-5 text-primary-800">Contacto</h4>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <li className="bg-primary-50/50 p-4 rounded-lg flex items-start">
-                  <div className="p-2 bg-white rounded-lg shadow-sm text-primary-600 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            {/* Enlaces legales */}
+            <div className="md:flex-1 md:max-w-xs">
+              <h4 className="text-lg font-bold mb-3 text-primary-800">Legal</h4>
+              <div>
+                {legalLinks.map((link) => (
+                  <a 
+                    key={link.name}
+                    href={link.href}
+                    className="block mb-2 text-neutral-600 hover:text-primary-600 transition-colors flex items-center"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-2 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                  </div>
-                  <div>
-                    <h5 className="font-medium text-primary-700 mb-1">Dirección</h5>
-                    <span className="text-neutral-600">{locationConfig.address}	</span>
-                  </div>
-                </li>
-                <li className="bg-primary-50/50 p-4 rounded-lg flex items-start">
-                  <div className="p-2 bg-white rounded-lg shadow-sm text-primary-600 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h5 className="font-medium text-primary-700 mb-1">Email</h5>
-                    <span className="text-neutral-600">{contactInfo.email}</span>
-                  </div>
-                </li>
-                <li className="bg-primary-50/50 p-4 rounded-lg flex items-start">
-                  <div className="p-2 bg-white rounded-lg shadow-sm text-primary-600 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h5 className="font-medium text-primary-700 mb-1">Teléfono</h5>
-                    <span className="text-neutral-600">{contactInfo.phone}</span>
-                  </div>
-                </li>
-                <li className="bg-primary-50/50 p-4 rounded-lg flex items-start">
-                  <div className="p-2 bg-white rounded-lg shadow-sm text-primary-600 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h5 className="font-medium text-primary-700 mb-1">Horario</h5>
-                    <span className="text-neutral-600">
-                      Lun - Vie: 9:00 - 18:00<br />
-                      Sáb: 10:00 - 14:00
-                    </span>
-                  </div>
-                </li>
-              </ul>
+                    {link.name}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
           
           {/* Línea divisoria */}
-          <div className="border-t border-neutral-200 pt-6">
+          <div className="border-t border-neutral-200 pt-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <p className="text-neutral-500 text-sm mb-4 md:mb-0">
+              <p className="text-neutral-500 text-sm mb-3 md:mb-0">
                 © {currentYear} Ing Juan Ordoñez. Todos los derechos reservados.
               </p>
               <p className="text-neutral-500 text-sm">
