@@ -137,7 +137,7 @@ const Footer = () => {
                   <a 
                     key={link.name}
                     href={link.href}
-                    className="block mb-2 text-neutral-600 hover:text-primary-600 transition-colors flex items-center"
+                    className=" mb-2 text-neutral-600 hover:text-primary-600 transition-colors flex items-center"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-2 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

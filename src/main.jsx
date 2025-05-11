@@ -1,25 +1,8 @@
-import { StrictMode, lazy, Suspense } from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
 import './index.css'
-
-// Carga diferida del componente App principal
-const App = lazy(() => import('./App.jsx'))
-
-// Componente de carga mientras se prepara la aplicación
-const LoadingFallback = () => (
-  <div style={{ 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    minHeight: '100vh',
-    backgroundColor: '#FFFFFF',
-    color: '#5F6CAF',
-    fontSize: '1.2rem'
-  }}>
-    <p>Cargando...</p>
-  </div>
-)
+import App from './App.jsx'  // Importación directa en lugar de lazy loading
 
 // Ejecutar después de que el documento haya cargado completamente
 function startApp() {
@@ -34,13 +17,11 @@ function startApp() {
   // Variable global para indicar rendimiento bajo para que sea accesible desde componentes
   window.__PERFORMANCE_MODE__ = isMobile || isLowCPU ? 'low' : 'high'
   
-  // Renderizar con fallback durante la carga
+  // Renderizado directo sin Suspense para simplificar
   createRoot(rootElement).render(
     <StrictMode>
       <HashRouter>
-        <Suspense fallback={<LoadingFallback />}>
-          <App />
-        </Suspense>
+        <App />
       </HashRouter>
     </StrictMode>
   )
