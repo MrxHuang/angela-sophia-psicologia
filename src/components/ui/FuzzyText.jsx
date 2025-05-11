@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const FuzzyText = ({
   children,
@@ -9,12 +9,31 @@ const FuzzyText = ({
   enableHover = true,
   baseIntensity = 0.18,
   hoverIntensity = 0.5,
+  optimizePerformance = false,
 }) => {
   const canvasRef = useRef(null);
+  const [isLowPerf, setIsLowPerf] = useState(false);
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent || '';
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+    
+    const cpuCores = navigator.hardwareConcurrency || 4;
+    const isLowCPU = cpuCores <= 4;
+    
+    const isLowRAM = navigator.deviceMemory && navigator.deviceMemory < 4;
+    
+    setIsLowPerf(optimizePerformance || isMobile || isLowCPU || isLowRAM);
+  }, [optimizePerformance]);
 
   useEffect(() => {
     let animationFrameId;
     let isCancelled = false;
+    let frameSkip = 0;
+    let lastFrameTime = 0;
+    const skipFrames = isLowPerf ? 3 : 1;
+    const minFrameTime = isLowPerf ? 60 : 16;
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -24,7 +43,10 @@ const FuzzyText = ({
       }
       if (isCancelled) return;
 
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d", { 
+        alpha: true,
+        desynchronized: true,
+      });
       if (!ctx) return;
 
       const computedFontFamily =
@@ -48,9 +70,10 @@ const FuzzyText = ({
 
       const text = React.Children.toArray(children).join("");
 
-      // Create offscreen canvas
+      const scale = isLowPerf ? 0.75 : 1.0;
+
       const offscreen = document.createElement("canvas");
-      const offCtx = offscreen.getContext("2d");
+      const offCtx = offscreen.getContext("2d", { alpha: true });
       if (!offCtx) return;
 
       offCtx.font = `${fontWeight} ${fontSizeStr} ${computedFontFamily}`;
@@ -66,11 +89,14 @@ const FuzzyText = ({
       const textBoundingWidth = Math.ceil(actualLeft + actualRight);
       const tightHeight = Math.ceil(actualAscent + actualDescent);
 
-      const extraWidthBuffer = 10;
-      const offscreenWidth = textBoundingWidth + extraWidthBuffer;
+      const extraWidthBuffer = isLowPerf ? 5 : 10;
+      const offscreenWidth = Math.ceil((textBoundingWidth + extraWidthBuffer) * scale);
+      const offscreenHeight = Math.ceil(tightHeight * scale);
 
       offscreen.width = offscreenWidth;
-      offscreen.height = tightHeight;
+      offscreen.height = offscreenHeight;
+
+      offCtx.scale(scale, scale);
 
       const xOffset = extraWidthBuffer / 2;
       offCtx.font = `${fontWeight} ${fontSizeStr} ${computedFontFamily}`;
@@ -78,47 +104,73 @@ const FuzzyText = ({
       offCtx.fillStyle = color;
       offCtx.fillText(text, xOffset - actualLeft, actualAscent);
 
-      const horizontalMargin = 50;
+      const horizontalMargin = isLowPerf ? 25 : 50;
       const verticalMargin = 0;
-      canvas.width = offscreenWidth + horizontalMargin * 2;
-      canvas.height = tightHeight + verticalMargin * 2;
-      ctx.translate(horizontalMargin, verticalMargin);
+      canvas.width = Math.ceil(offscreenWidth + horizontalMargin * 2 * scale);
+      canvas.height = Math.ceil(offscreenHeight + verticalMargin * 2 * scale);
+      
+      canvas.style.width = `${canvas.width / scale}px`;
+      canvas.style.height = `${canvas.height / scale}px`;
+      
+      ctx.translate(horizontalMargin * scale, verticalMargin * scale);
 
-      const interactiveLeft = horizontalMargin + xOffset;
-      const interactiveTop = verticalMargin;
-      const interactiveRight = interactiveLeft + textBoundingWidth;
-      const interactiveBottom = interactiveTop + tightHeight;
+      const interactiveLeft = horizontalMargin * scale + xOffset * scale;
+      const interactiveTop = verticalMargin * scale;
+      const interactiveRight = interactiveLeft + textBoundingWidth * scale;
+      const interactiveBottom = interactiveTop + tightHeight * scale;
 
       let isHovering = false;
-      const fuzzRange = 30;
+      const fuzzRange = isLowPerf ? 20 : 30;
 
-      const run = () => {
+      const run = (timestamp) => {
         if (isCancelled) return;
+        
+        const deltaTime = timestamp - lastFrameTime;
+        if (deltaTime < minFrameTime) {
+          animationFrameId = window.requestAnimationFrame(run);
+          return;
+        }
+        
+        frameSkip = (frameSkip + 1) % skipFrames;
+        if (frameSkip !== 0) {
+          animationFrameId = window.requestAnimationFrame(run);
+          return;
+        }
+        
+        lastFrameTime = timestamp;
+        
+        const actualBaseIntensity = isLowPerf ? baseIntensity * 0.7 : baseIntensity;
+        const actualHoverIntensity = isLowPerf ? hoverIntensity * 0.7 : hoverIntensity;
+        
         ctx.clearRect(
           -fuzzRange,
           -fuzzRange,
           offscreenWidth + 2 * fuzzRange,
-          tightHeight + 2 * fuzzRange
+          offscreenHeight + 2 * fuzzRange
         );
-        const intensity = isHovering ? hoverIntensity : baseIntensity;
-        for (let j = 0; j < tightHeight; j++) {
+        
+        const intensity = isHovering ? actualHoverIntensity : actualBaseIntensity;
+        
+        const rowHeight = isLowPerf ? 2 : 1;
+        for (let j = 0; j < offscreenHeight; j += rowHeight) {
           const dx = Math.floor(intensity * (Math.random() - 0.5) * fuzzRange);
           ctx.drawImage(
             offscreen,
             0,
             j,
             offscreenWidth,
-            1,
+            rowHeight,
             dx,
             j,
             offscreenWidth,
-            1
+            rowHeight
           );
         }
+        
         animationFrameId = window.requestAnimationFrame(run);
       };
 
-      run();
+      animationFrameId = window.requestAnimationFrame(run);
 
       const isInsideTextArea = (x, y) => {
         return (
@@ -129,8 +181,16 @@ const FuzzyText = ({
         );
       };
 
+      let lastInteractionTime = 0;
+      const interactionThreshold = isLowPerf ? 100 : 50;
+
       const handleMouseMove = (e) => {
         if (!enableHover) return;
+        
+        const now = Date.now();
+        if (now - lastInteractionTime < interactionThreshold) return;
+        lastInteractionTime = now;
+        
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -144,6 +204,11 @@ const FuzzyText = ({
       const handleTouchMove = (e) => {
         if (!enableHover) return;
         e.preventDefault();
+        
+        const now = Date.now();
+        if (now - lastInteractionTime < interactionThreshold) return;
+        lastInteractionTime = now;
+        
         const rect = canvas.getBoundingClientRect();
         const touch = e.touches[0];
         const x = touch.clientX - rect.left;
@@ -193,6 +258,7 @@ const FuzzyText = ({
     enableHover,
     baseIntensity,
     hoverIntensity,
+    isLowPerf,
   ]);
 
   return <canvas ref={canvasRef} />;

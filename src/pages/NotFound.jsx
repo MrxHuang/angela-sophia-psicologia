@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import FuzzyText from '../components/ui/FuzzyText';
@@ -13,15 +13,39 @@ import Button from '../components/ui/Button';
 const NotFound = () => {
   const [hoverIntensity, setHoverIntensity] = useState(0.5);
   const [enableHover, setEnableHover] = useState(true);
+  const [isLowPerf, setIsLowPerf] = useState(false);
+
+  useEffect(() => {
+    // Detector básico para dispositivos móviles o de bajo rendimiento
+    const userAgent = navigator.userAgent || '';
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+    
+    // Detector de CPU menos potente (detección básica)
+    const cpuCores = navigator.hardwareConcurrency || 4;
+    const isLowCPU = cpuCores <= 4;
+    
+    // Comprobación de memoria disponible (solo funciona en Chrome)
+    const isLowRAM = navigator.deviceMemory && navigator.deviceMemory < 4;
+    
+    const lowPerf = isMobile || isLowCPU || isLowRAM;
+    setIsLowPerf(lowPerf);
+    
+    // Deshabilitar hover en dispositivos de bajo rendimiento para mejorar performance
+    if (lowPerf) {
+      setEnableHover(false);
+      setHoverIntensity(0.3);
+    }
+  }, []);
 
   return (
     <section className="min-h-screen relative flex flex-col items-center justify-center overflow-hidden py-20 bg-white">
       {/* Fondo con ondas animadas (Threads) */}
       <div className="absolute inset-0 z-0 opacity-30">
         <Threads
-          amplitude={1}
+          amplitude={isLowPerf ? 0.7 : 1}
           distance={0}
-          enableMouseInteraction={true}
+          enableMouseInteraction={!isLowPerf}
+          lowPerformanceMode={isLowPerf}
           color={[0.37, 0.42, 0.69]} // Color primario (violeta-azul) de la página
         />
       </div>
@@ -32,17 +56,18 @@ const NotFound = () => {
           className="max-w-4xl mx-auto text-center relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: isLowPerf ? 0.3 : 0.5 }}
         >
           <div className="relative mb-8 flex justify-center">
             <div className="flex justify-center items-center">
               <FuzzyText 
-                fontSize="clamp(8rem, 20vw, 16rem)" 
+                fontSize={isLowPerf ? "clamp(6rem, 15vw, 12rem)" : "clamp(8rem, 20vw, 16rem)"}
                 fontWeight={900}
                 color="#5F6CAF" // Color primario (similar al primary-600)
-                baseIntensity={0.2}
+                baseIntensity={isLowPerf ? 0.15 : 0.2}
                 hoverIntensity={hoverIntensity}
                 enableHover={enableHover}
+                optimizePerformance={isLowPerf}
               >
                 404
               </FuzzyText>
@@ -53,9 +78,9 @@ const NotFound = () => {
           </div>
           
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: isLowPerf ? 10 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: isLowPerf ? 0.2 : 0.3, duration: isLowPerf ? 0.4 : 0.6 }}
             className="relative mb-12"
           >
             <h1 className="text-3xl md:text-4xl font-display font-bold text-neutral-800 mb-4">
@@ -70,9 +95,9 @@ const NotFound = () => {
           </motion.div>
           
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: isLowPerf ? 10 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
+            transition={{ delay: isLowPerf ? 0.3 : 0.5, duration: isLowPerf ? 0.4 : 0.6 }}
           >
             <Link to="/">
               <Button 
