@@ -1,128 +1,159 @@
-# Landing Page de Psicología - Ángela Sophia
+# Documentación Técnica - Landing Page Ángela Sophia
 
 ## Descripción
+Landing page para psicóloga con enfoque en terapia cognitivo-conductual. El proyecto incluye efectos visuales interactivos, animaciones y diseño responsive.
 
-Este proyecto es una landing page moderna y personalizada para servicios de psicología, desarrollada para la profesional Ángela Sophia. La página está diseñada con un enfoque en la experiencia de usuario, con animaciones fluidas, efectos visuales atractivos y un diseño responsive que se adapta a todos los dispositivos.
+## Tecnologías Principales
+- React
+- Vite
+- Tailwind CSS
+- Framer Motion (animaciones)
+- React Router (enrutamiento)
+- OGL (WebGL para efectos visuales)
+- Leaflet (mapas interactivos)
 
-
-## Características
-
-- **Diseño moderno y personalizado** con esquema de colores azul-violeta profesional
-- **Efectos visuales avanzados** como glassmorphism, gradientes difuminados y animaciones sutiles
-- **Animaciones fluidas** utilizando Framer Motion para transiciones elegantes
-- **Sistema de scroll suave** optimizado para una navegación agradable
-- **Scrollbar personalizado** con gradientes azul-violeta que refleja la identidad visual del sitio
-- **Tipografía profesional** con jerarquía visual clara y espaciado optimizado
-- **Totalmente responsive** para una experiencia perfecta en dispositivos móviles y de escritorio
-- **Mapa interactivo** integrado con Leaflet y OpenStreetMap
-- **Formulario de contacto** con validación y feedback visual
-- **Botones de contacto WhatsApp** con mensajes predefinidos para cada servicio
-- **Tarjetas de servicios** con diseño elegante y toda la información necesaria
-
-## Tecnologías utilizadas
-
-- **React 19** - Biblioteca de JavaScript para construir interfaces de usuario
-- **Vite 6** - Herramienta de compilación que proporciona una experiencia de desarrollo más rápida
-- **Tailwind CSS 4** - Framework CSS utilitario para diseño rápido y personalizable
-- **Framer Motion 12** - Biblioteca para animaciones en React
-- **React Intersection Observer** - Para detectar elementos en el viewport
-- **Leaflet/React Leaflet** - Para implementar mapas interactivos
-- **React Scroll** - Para implementar navegación suave entre secciones
-
-## Estructura del proyecto
-
+## Estructura del Proyecto
 ```
-src/
-├── assets/          # Imágenes, iconos y recursos estáticos
-├── components/      # Componentes reutilizables
-│   ├── layout/      # Componentes estructurales (Navbar, Footer)
-│   ├── sections/    # Secciones principales de la página
-│   └── ui/          # Componentes de interfaz de usuario
-├── hooks/           # Hooks personalizados
-│   ├── useParallax.js      # Hook para efectos parallax
-│   └── useScrollAnimation.js # Hook para animaciones basadas en scroll
-├── pages/           # Páginas de la aplicación
-├── styles/          # Estilos globales y configuraciones
-│   ├── base.css     # Estilos base
-│   ├── components.css # Estilos de componentes
-│   └── variables.css # Variables CSS
-└── utils/           # Funciones de utilidad
-    ├── config.js    # Configuraciones generales
-    └── whatsappUtils.js # Utilidades para integración con WhatsApp
+landing-ang/
+├── public/              # Archivos estáticos
+├── src/
+│   ├── assets/          # Imágenes y recursos
+│   ├── components/
+│   │   ├── layout/      # Componentes estructurales (Navbar, Footer)
+│   │   ├── sections/    # Secciones principales de la página
+│   │   └── ui/          # Componentes de UI reutilizables
+│   ├── hooks/           # Custom hooks
+│   ├── pages/           # Páginas de la aplicación
+│   ├── styles/          # Estilos adicionales
+│   └── utils/           # Utilidades y configuración
+│   ├── App.jsx          # Componente principal y rutas
+│   ├── main.jsx         # Punto de entrada
+│   └── index.css        # Estilos globales
+├── tailwind.config.js   # Configuración de Tailwind CSS
+└── vite.config.js       # Configuración de Vite
 ```
 
-## Secciones
+## Componentes Visuales Destacados
 
-1. **Hero** - Presentación principal con llamada a la acción y fondos animados
-2. **Sobre mí** - Información sobre Ángela Sophia, su formación y valores profesionales
-3. **Servicios** - Detalle de los servicios ofrecidos con tarjetas informativas y botones de contacto
-4. **Contacto** - Formulario de contacto, información y mapa interactivo con la ubicación
+### FuzzyText
+Componente que crea texto con efecto de distorsión dinámica. Implementado usando Canvas para manipular el texto pixel por pixel, creando un efecto de "ruido" visual.
 
-## Características de diseño
+**Características:**
+- Efecto de distorsión que se intensifica al pasar el cursor
+- Rendimiento optimizado usando Canvas
+- Personalizable en intensidad, color y comportamiento
 
-- **Glassmorphism** - Efecto de vidrio esmerilado en tarjetas y elementos de navegación
-- **Gradientes animados** - Fondos con gradientes suaves que se animan lentamente
-- **Animaciones de entrada** - Elementos que aparecen con animaciones suaves al entrar en el viewport
-- **Efectos hover** - Interacciones visuales al pasar el cursor sobre elementos interactivos
-- **Scrollbar personalizado** - Barra de desplazamiento con gradiente azul-violeta para una experiencia visual coherente
-- **Mapa interactivo** - Visualización de la ubicación con marcador personalizado y opción para abrir en Google Maps
-- **Navegación responsiva** - Menú hamburguesa en dispositivos móviles con animaciones de apertura y cierre
+**Uso principal:** Número "404" en la página de error.
 
-## Mejoras recientes
+### Threads
+Componente para crear fondos con ondas animadas mediante WebGL (usando la biblioteca OGL). Crea un efecto visual fluido de líneas ondulantes que responden al movimiento del cursor.
 
-- Cambio del esquema de colores a una paleta azul-violeta más profesional
-- Implementación de mapa interactivo con Leaflet y OpenStreetMap
-- Integración de botones de WhatsApp con mensajes predefinidos para cada servicio
-- Optimización del rendimiento en dispositivos móviles
-- Mejora del sistema de scroll suave y scrollbar personalizado
-- Rediseño responsive de todas las secciones
+**Características:**
+- Interacción con el cursor del usuario
+- Animación constante con ondas fluidas
+- Oculto en dispositivos móviles para optimizar rendimiento
+- Personalizable en color, amplitud y distancia
 
-## Instalación y ejecución
+**Uso principal:** Fondo dinámico en sección Hero y página 404.
 
-1. Clona este repositorio
-   ```bash
-   git clone https://github.com/yourusername/angela-sophia-psicologia.git
-   cd angela-sophia-psicologia
-   ```
+### BlurText
+Componente para textos con efecto de desenfoque que se desvanece gradualmente a medida que se muestra en pantalla.
 
-2. Instala las dependencias:
-   ```bash
-   npm install
-   ```
+**Características:**
+- Animación de "revelación" con efecto de desenfoque
+- Animación por palabras o por caracteres
+- Personalizable en timing, dirección y efecto
 
-3. Ejecuta el servidor de desarrollo:
-   ```bash
-   npm run dev
-   ```
+**Uso principal:** Título principal en la sección Hero.
 
-4. Abre tu navegador en `http://localhost:5173`
+### ParallaxText
+Componente que crea texto con desplazamiento horizontal continuo, simulando un efecto parallax.
 
-## Compilación para producción
+**Características:**
+- Movimiento continuo e infinito
+- Velocidad ajustable
+- Responde al scroll del usuario
 
-```bash
-npm run build
-```
+**Uso principal:** Sección de Servicios para destacar términos clave.
 
-Los archivos compilados estarán en el directorio `dist/`.
+## Responsive Design
+- Diseño adaptativo para todos los dispositivos (móvil, tablet, desktop)
+- Componentes que se ajustan o desactivan en función del tamaño de pantalla
+- Menú hamburguesa para dispositivos móviles
+- Efectos visuales simplificados en dispositivos móviles para optimizar rendimiento
+
+## Optimizaciones
+- Lazy loading de componentes pesados
+- Desactivación de efectos WebGL en dispositivos móviles
+- Imágenes optimizadas para carga rápida
+- Backgrounds semi-transparentes para mejorar la legibilidad
+
+## Scripts Disponibles
+- `npm run dev` - Inicia el servidor de desarrollo
+- `npm run build` - Genera la versión de producción
+- `npm run preview` - Previsualiza la versión de producción
+- `npm run deploy` - Despliega la aplicación en GitHub Pages
+
+## Navegación
+La aplicación incluye navegación interna (smooth scroll) y una página 404 personalizada.
+
+## Componentes Eliminados
+Durante el desarrollo se han eliminado algunos componentes que no fueron necesarios para la versión final:
+- CustomCursor
+- GlowText
+- SpotlightCard
+- TestimonialCard
+- GoogleMap (reemplazado por LeafletMap)
+- OpenStreetMap
+- Accordion
+- Secciones eliminadas: Testimonials, FAQ
 
 ## Despliegue
+Para desplegar la aplicación en GitHub Pages:
 
-El proyecto está configurado para despliegue en GitHub Pages:
+1. Asegúrate de tener instalado el paquete `gh-pages`: 
+   ```
+   npm install gh-pages --save-dev
+   ```
 
-```bash
-npm run deploy
-```
+2. Ejecuta el comando de despliegue:
+   ```
+   npm run deploy
+   ```
 
-## Personalización
+Este proceso generará una versión optimizada de la aplicación y la publicará en el repositorio configurado en el `package.json` bajo la propiedad `homepage`.
 
-Para personalizar el contenido, puedes modificar los textos en los componentes de la carpeta `src/components/sections/`. Para cambiar los colores y estilos globales, ajusta la configuración en `tailwind.config.js` y archivos en `src/styles/`.
+## Mejoras Futuras
 
-## Créditos
+### Optimización de tamaño del bundle
+Durante la compilación, se muestra una advertencia sobre el tamaño de algunos chunks que superan los 500 kB después de la minificación. Para solucionar esto, se podrían implementar las siguientes mejoras:
 
-- Diseño y desarrollo: Juan Ordoñez
-- Imágenes: Proporcionadas por Ángela Sophia
-- Iconos: [Heroicons](https://heroicons.com/)
+1. **Code-splitting dinámico**: Utilizar `import()` dinámicos para cargar componentes solo cuando sean necesarios.
+   ```javascript
+   const SomeComponent = React.lazy(() => import('./SomeComponent'));
+   ```
 
-## Licencia
+2. **Configurar chunks manuales**: Ajustar la configuración de Rollup en `vite.config.js`:
+   ```javascript
+   export default defineConfig({
+     plugins: [react(), tailwindcss()],
+     build: {
+       rollupOptions: {
+         output: {
+           manualChunks: {
+             vendor: ['react', 'react-dom', 'framer-motion'],
+             ui: ['./src/components/ui/'],
+           }
+         }
+       }
+     },
+     base: ''
+   })
+   ```
 
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+3. **Ajustar el límite de advertencia**: Si las optimizaciones anteriores no son suficientes, se puede aumentar el límite de advertencia:
+   ```javascript
+   build: {
+     chunkSizeWarningLimit: 800
+   }
+   ```
