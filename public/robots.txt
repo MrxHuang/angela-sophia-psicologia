@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://psicologaangelasophia.com/sitemap.xml
+
+# Deshabilitar archivos innecesarios
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /vite.config.js
+
+# Permitir motores de búsqueda
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Configuración de rastreo
+Crawl-delay: 10

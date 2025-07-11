@@ -65,13 +65,12 @@ const Footer = () => {
             <div className="md:max-w-xs">
               <div className="flex items-center mb-3">
                 <h3 className="text-2xl font-display font-bold">
-                  <span className="text-primary-700">Ángela</span>
+                  <span className="text-primary-700">Angela</span>
                   <span className="text-secondary-600 ml-1">Sophia</span>
                 </h3>
               </div>
               <p className="text-neutral-600 mb-4">
-                Psicóloga especializada en terapia cognitivo-conductual, ofreciendo un espacio seguro para tu bienestar emocional.
-              </p>
+              Psicóloga comprometida con tu bienestar emocional, ofreciendo un espacio seguro y confidencial.              </p>
               <div className="flex space-x-3">
                 {/* Iconos de redes sociales */}
                 {Object.keys(socialMedia).map((platform) => (

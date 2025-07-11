@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'  // Importación directa en lugar de lazy loading
+import GoogleAnalytics from './components/analytics/GoogleAnalytics'
 
 // Ejecutar después de que el documento haya cargado completamente
 function startApp() {
@@ -21,7 +22,9 @@ function startApp() {
   createRoot(rootElement).render(
     <StrictMode>
       <HashRouter>
-        <App />
+        <GoogleAnalytics>
+          <App />
+        </GoogleAnalytics>
       </HashRouter>
     </StrictMode>
   )
