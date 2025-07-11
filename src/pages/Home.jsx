@@ -18,7 +18,7 @@ const Home = () => {
       <main style={{ paddingTop: '80px' }}>
         <Hero />
         <About />
-        <Timeline />
+
         <Services />
       </main>
       <Footer />

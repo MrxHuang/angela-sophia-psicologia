@@ -108,13 +108,13 @@ const Hero = () => {
                   className="block font-display font-bold text-[#2c3655] drop-shadow-sm"
                   variants={titleVariants}
                 >
-                  Encuentra tu
+                  Bienvenido a un
                 </motion.span>
                 <motion.span 
                   className="font-display font-bold text-primary-600 drop-shadow-sm"
                   variants={titleVariants}
                 >
-                  equilibrio emocional
+                  encuentro contigo mismo 
                 </motion.span>
               </motion.h1>
             </div>
@@ -129,7 +129,7 @@ const Hero = () => {
             <motion.p 
               className="text-lg md:text-xl text-neutral-700 max-w-2xl mx-auto relative z-10"
             >
-              Soy Ángela Sophia, psicóloga con un enfoque innovador en terapia cognitivo-conductual. 
+              Soy Angela Sophia, psicóloga con un enfoque innovador en terapia. 
               Te acompaño en tu camino hacia el bienestar emocional con una perspectiva fresca y métodos actualizados.
             </motion.p>
             {/* Sutil fondo para mejorar contraste */}

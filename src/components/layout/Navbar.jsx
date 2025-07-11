@@ -69,7 +69,6 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Inicio', href: '#home' },
     { name: 'Sobre mí', href: '#about' },
-    { name: 'Proceso', href: '#timeline' },
     { name: 'Servicios', href: '#services' },
     { name: 'Redes Sociales', href: '#social' }
   ];

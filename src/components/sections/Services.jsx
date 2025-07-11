@@ -20,7 +20,7 @@ const Services = () => {
     {
       id: 1,
       key: 'individual',
-      title: 'Terapia Individual',
+      title: 'Terapia presencial',
       shortDesc: 'Sesiones personalizadas para abordar tus necesidades específicas.',
       description: 'Sesiones personalizadas donde trabajamos juntos para abordar tus preocupaciones específicas, desarrollar estrategias de afrontamiento efectivas y alcanzar tus objetivos de bienestar emocional. Cada sesión se adapta a tus necesidades únicas.',
       icon: (
@@ -32,7 +32,8 @@ const Services = () => {
         'Atención completamente personalizada',
         'Espacio confidencial y seguro',
         'Flexibilidad de horarios',
-        'Seguimiento continuo de tu progreso'
+        'Seguimiento continuo de tu progreso',
+        'La terapia puede ser a domicilio'
       ]
     },
     {
@@ -50,25 +51,8 @@ const Services = () => {
         'Ahorro de tiempo en desplazamientos',
         'Accesibilidad desde cualquier ubicación',
         'Misma calidad que las sesiones presenciales',
-        'Plataforma segura y confidencial'
-      ]
-    },
-    {
-      id: 3,
-      key: 'grupal',
-      title: 'Talleres Grupales',
-      shortDesc: 'Experiencias de aprendizaje colectivo en temas específicos.',
-      description: 'Talleres temáticos diseñados para grupos pequeños donde se abordan temas específicos como manejo del estrés, habilidades sociales, autoestima y más. Aprende en comunidad y comparte experiencias en un ambiente seguro y enriquecedor.',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 sm:h-10 sm:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-      ),
-      benefits: [
-        'Aprendizaje colaborativo',
-        'Precios más accesibles',
-        'Desarrollo de habilidades sociales',
-        'Materiales y recursos incluidos'
+        'Plataforma segura y confidencial',
+        'Atención desde cualquier parte del mundo'
       ]
     }
   ];
@@ -173,7 +157,7 @@ const Services = () => {
           initial="hidden"
           animate={controls}
           variants={containerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-8 sm:mt-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mt-8 sm:mt-12 max-w-4xl mx-auto"
         >
           {services.map((service) => (
             <motion.div key={service.id} variants={cardVariants}>
@@ -228,8 +212,7 @@ const Services = () => {
           <div className="max-w-3xl mx-auto py-8 sm:py-10 px-6 sm:px-8 rounded-2xl glass">
             <h3 className="text-xl sm:text-2xl font-display font-bold mb-3 sm:mb-4 text-primary-800">¿No estás seguro de qué servicio necesitas?</h3>
             <p className="text-neutral-700 mb-6 sm:mb-8 text-base sm:text-lg">
-              Agenda una consulta inicial gratuita de 15 minutos para discutir tus necesidades y determinar el mejor enfoque para ti.
-            </p>
+            Agenda una primera sesión gratuita de 40 minutos. Será un espacio para conversar sobre tus necesidades, conocernos y comenzar a construir un lugar seguro y útil para tu proceso</p>
             <div className="flex justify-center">
               <Button 
                 variant="primary" 

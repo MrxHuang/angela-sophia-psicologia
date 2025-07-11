@@ -40,17 +40,10 @@ const Footer = () => {
   const mainLinks = [
     { name: 'Inicio', href: '#home' },
     { name: 'Sobre mí', href: '#about' },
-    { name: 'Proceso', href: '#timeline' },
     { name: 'Servicios', href: '#services' },
     { name: 'Redes Sociales', href: '#social' }
   ];
 
-  // Enlaces legales
-  const legalLinks = [
-    { name: 'Política de privacidad', href: '#' },
-    { name: 'Términos y condiciones', href: '#' },
-    { name: 'Aviso legal', href: '#' }
-  ];
 
   return (
     <div className="relative overflow-hidden">
@@ -67,7 +60,7 @@ const Footer = () => {
       >
         <div className="container mx-auto px-4">
           {/* Sección principal */}
-          <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-8">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-8 relative">
             {/* Logo y descripción */}
             <div className="md:max-w-xs">
               <div className="flex items-center mb-3">
@@ -111,9 +104,9 @@ const Footer = () => {
             </div>
             
             {/* Enlaces principales */}
-            <div className="md:flex-1 md:max-w-xs">
-              <h4 className="text-lg font-bold mb-3 text-primary-800">Navegación</h4>
-              <div className="grid grid-cols-2 gap-y-2 gap-x-4">
+            <div className="md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+              <h4 className="text-lg font-bold mb-3 text-primary-800 text-center">Navegación</h4>
+              <div className="flex flex-col space-y-2">
                 {mainLinks.map((link) => (
                   <a 
                     key={link.name}
@@ -129,29 +122,10 @@ const Footer = () => {
                 ))}
               </div>
             </div>
-            
-            {/* Enlaces legales */}
-            <div className="md:flex-1 md:max-w-xs">
-              <h4 className="text-lg font-bold mb-3 text-primary-800">Legal</h4>
-              <div>
-                {legalLinks.map((link) => (
-                  <a 
-                    key={link.name}
-                    href={link.href}
-                    className=" mb-2 text-neutral-600 hover:text-primary-600 transition-colors flex items-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-2 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                    {link.name}
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
           
           {/* Línea divisoria */}
-          <div className="border-t border-neutral-200 pt-4">
+          <div className="border-t border-neutral-200 pt-4 mt-8 md:mt-0">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-neutral-500 text-sm mb-3 md:mb-0">
                 © {currentYear} Ing Juan Ordoñez. Todos los derechos reservados.
