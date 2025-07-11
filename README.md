@@ -1,16 +1,18 @@
 # Documentación Técnica - Landing Page Ángela Sophia
 
 ## Descripción
-Landing page para psicóloga con enfoque en terapia cognitivo-conductual. El proyecto incluye efectos visuales interactivos, animaciones y diseño responsive.
+Landing page profesional para Ángela Sophia, psicóloga especializada en terapia cognitivo-conductual. El sitio web presenta un diseño moderno, accesible y centrado en el usuario, con énfasis en la experiencia móvil y la optimización de rendimiento.
 
 ## Tecnologías Principales
-- React
-- Vite
-- Tailwind CSS
+- React 19
+- Vite 6
+- Tailwind CSS 4
 - Framer Motion (animaciones)
 - React Router (enrutamiento)
 - OGL (WebGL para efectos visuales)
 - Leaflet (mapas interactivos)
+- React Intersection Observer (scroll animations)
+- GSAP (animaciones avanzadas)
 
 ## Estructura del Proyecto
 ```
@@ -32,6 +34,23 @@ landing-ang/
 ├── tailwind.config.js   # Configuración de Tailwind CSS
 └── vite.config.js       # Configuración de Vite
 ```
+
+## Mejoras Recientes
+
+### Optimizaciones de Imágenes
+- Implementado manejo responsivo de imágenes
+- Añadidos placeholders y estados de carga
+- Optimización de formatos y compresión
+
+### Mejoras en el Diseño Responsivo
+- Reorganización del layout para móviles
+- Ajustes en la jerarquía visual para mejor legibilidad
+- Efectos visuales optimizados para móviles
+
+### Accesibilidad
+- Mejor contraste de colores
+- Navegación por teclado mejorada
+- Etiquetas ARIA y roles semánticos
 
 ## Componentes Visuales Destacados
 
@@ -76,26 +95,110 @@ Componente que crea texto con desplazamiento horizontal continuo, simulando un e
 
 **Uso principal:** Sección de Servicios para destacar términos clave.
 
-## Responsive Design
-- Diseño adaptativo para todos los dispositivos (móvil, tablet, desktop)
-- Componentes que se ajustan o desactivan en función del tamaño de pantalla
-- Menú hamburguesa para dispositivos móviles
-- Efectos visuales simplificados en dispositivos móviles para optimizar rendimiento
+## Diseño y Experiencia de Usuario
 
-## Optimizaciones
-- Lazy loading de componentes pesados
-- Desactivación de efectos WebGL en dispositivos móviles
-- Imágenes optimizadas para carga rápida
-- Backgrounds semi-transparentes para mejorar la legibilidad
+### Responsive Design
+- Diseño adaptativo para móviles, tablets y desktop
+- Layout optimizado para cada breakpoint
+- Menú de hamburguesa con animaciones fluidas
+- Imágenes y fondos adaptativos
+
+### Secciones Principales
+1. **Hero**
+   - Animaciones fluidas
+   - Efectos de scroll personalizados
+   - Llamados a la acción estratégicos
+
+2. **Sobre Mí**
+   - Diseño de dos columnas en desktop
+   - Imagen de perfil optimizada
+   - Sección de valores con iconos
+
+3. **Servicios**
+   - Tarjetas interactivas
+   - Efectos hover sutiles
+   - Diseño de cuadrícula adaptable
+
+4. **Footer**
+   - Navegación simplificada
+   - Enlaces a redes sociales
+   - Información de contacto clara
+
+## Optimizaciones de Rendimiento
+
+### Tiempo de Carga
+- Lazy loading de imágenes y componentes
+- Carga diferida de scripts no críticos
+- Optimización de assets estáticos
+- Preload de fuentes críticas
+
+### Técnicas Avanzadas
+- Code splitting automático
+- Tree shaking para reducir el bundle size
+- Pre-rendering de rutas críticas
+- Optimización de animaciones para mejor rendimiento
+
+### SEO
+- Metadatos optimizados
+- Sitemap generado automáticamente
+- Estructura semántica HTML5
+- Open Graph y Twitter Cards
 
 ## Scripts Disponibles
-- `npm run dev` - Inicia el servidor de desarrollo
-- `npm run build` - Genera la versión de producción
-- `npm run preview` - Previsualiza la versión de producción
-- `npm run deploy` - Despliega la aplicación en GitHub Pages
 
-## Navegación
-La aplicación incluye navegación interna (smooth scroll) y una página 404 personalizada.
+### Desarrollo
+```bash
+npm run dev      # Inicia el servidor de desarrollo
+npm run lint     # Ejecuta el linter
+```
+
+### Producción
+```bash
+npm run build    # Genera la versión optimizada para producción
+npm run preview  # Previsualiza la versión de producción localmente
+npm run deploy   # Despliega en GitHub Pages
+```
+
+### Mantenimiento
+```bash
+npm run format   # Formatea el código automáticamente
+npm run analyze  # Analiza el tamaño del bundle
+```
+
+## Estructura del Código
+
+### Componentes Clave
+- **Hero**: Animaciones de entrada y efectos visuales
+- **About**: Sección "Sobre Mí" con imagen de perfil
+- **Services**: Muestra los servicios ofrecidos
+- **Timeline**: Línea de tiempo del proceso terapéutico
+- **Testimonials**: Opiniones de pacientes
+- **Contact**: Formulario de contacto interactivo
+- **Footer**: Navegación y datos de contacto
+
+### Hooks Personalizados
+- `useParallax`: Efectos de desplazamiento parallax
+- `useScrollAnimation`: Animaciones basadas en scroll
+- `useResponsiveImage`: Manejo de imágenes responsivas
+
+## Guía de Estilos
+
+### Colores Principales
+- **Primario**: `#5F6CAF` (Azul violáceo)
+- **Secundario**: `#F472B6` (Rosa)
+- **Acento**: `#38BDF8` (Azul claro)
+- **Fondo**: `#F9FAFB` (Gris muy claro)
+- **Texto**: `#1F2937` (Gris oscuro)
+
+### Tipografía
+- **Títulos**: 'Playfair Display', serif
+- **Texto**: 'Inter', sans-serif
+- **Tamaños**: Sistema de escala modular para consistencia
+
+### Breakpoints
+- Móvil: < 640px
+- Tablet: 640px - 1023px
+- Desktop: ≥ 1024px
 
 ## Componentes Eliminados
 Durante el desarrollo se han eliminado algunos componentes que no fueron necesarios para la versión final:
