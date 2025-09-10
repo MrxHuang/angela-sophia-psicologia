@@ -80,7 +80,7 @@ const Hero = () => {
           distance={0}
           enableMouseInteraction={!isLowPerf}
           lowPerformanceMode={isLowPerf}
-          color={[0.37, 0.42, 0.69]} // Color primario (violeta-azul) de la página
+          color={[0.37, 0.42, 0.69]}
         />
       </div>
       

@@ -105,13 +105,13 @@ const Threads = ({
   amplitude = 1,
   distance = 0,
   enableMouseInteraction = false,
-  lowPerformanceMode = false, // Nuevo parámetro para dispositivos de bajo rendimiento
+  lowPerformanceMode = false,
   ...rest
 }) => {
   const containerRef = useRef(null);
   const animationFrameId = useRef();
   const lastFrameTime = useRef(0);
-  const frameSkip = useRef(lowPerformanceMode ? 3 : 1); // Saltear frames en modo de bajo rendimiento
+  const frameSkip = useRef(lowPerformanceMode ? 3 : 1);
 
   useEffect(() => {
     if (!containerRef.current) return;
