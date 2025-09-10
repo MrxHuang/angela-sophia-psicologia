@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../ui/Button';
+import { handleNavLinkClick } from '../../utils/scrollUtils';
 
 /**
  * Componente de navegación principal con animaciones y diseño responsive
@@ -25,44 +26,14 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Manejar clic en enlaces de navegación
-  const handleNavLinkClick = (e, href) => {
-    e.preventDefault();
-    const targetId = href.replace('#', '');
-    const targetElement = document.getElementById(targetId);
-    
-    if (targetElement) {
-      // Scroll suave con animación mejorada
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - 80; // 80px es la altura del navbar
-      
-      // Animación suave con efecto de desaceleración
-      const startPosition = window.pageYOffset;
-      const distance = offsetPosition - startPosition;
-      const duration = 1000; // duración en milisegundos
-      let start = null;
-      
-      function animation(currentTime) {
-        if (start === null) start = currentTime;
-        const timeElapsed = currentTime - start;
-        const progress = Math.min(timeElapsed / duration, 1);
-        
-        // Función de interpolación con efecto easeInOutQuad
-        const easeInOutQuad = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-        
-        window.scrollTo(0, startPosition + distance * easeInOutQuad(progress));
-        
-        if (timeElapsed < duration) {
-          requestAnimationFrame(animation);
-        }
-      }
-      
-      requestAnimationFrame(animation);
-      
+  // Manejar clic en enlaces de navegación (usando función optimizada)
+  const handleNavClick = (e, href) => {
+    handleNavLinkClick(e, href, () => {
+      // Cerrar menú móvil después del scroll
       if (isMenuOpen) {
         setIsMenuOpen(false);
       }
-    }
+    });
   };
 
   // Enlaces de navegación
@@ -107,7 +78,7 @@ const Navbar = () => {
         {/* Logo */}
         <a 
           href="#home" 
-          onClick={(e) => handleNavLinkClick(e, '#home')}
+          onClick={(e) => handleNavClick(e, '#home')}
           className="flex items-center transition-all duration-300 hover:opacity-80"
         >
           <span className="text-xl md:text-2xl font-display font-bold text-primary-700 mr-1">Angela</span>
@@ -121,7 +92,7 @@ const Navbar = () => {
               <li key={link.name}>
                 <a
                   href={link.href}
-                  onClick={(e) => handleNavLinkClick(e, link.href)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="text-neutral-800 hover:text-primary-600 transition-colors font-medium relative group px-2 py-1 rounded-md hover:bg-primary-50/70"
                 >
                   {link.name}
@@ -130,14 +101,19 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <Button 
-            variant="primary" 
-            size="md" 
-            className="shadow-sm hover:shadow-md ml-3"
-            onClick={(e) => handleNavLinkClick(e, '#services')}
-          >
-            <span className="hidden sm:inline">Agendar cita</span>
-          </Button>
+          <div className="relative group ml-3">
+            <Button 
+              variant="primary" 
+              size="md" 
+              className="relative overflow-hidden"
+              onClick={(e) => handleNavClick(e, '#services')}
+            >
+              {/* Efecto de brillo en hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none"></div>
+              
+              <span className="hidden sm:inline relative z-10">Agendar cita</span>
+            </Button>
+          </div>
         </nav>
 
         {/* Botón de menú móvil */}
@@ -196,7 +172,7 @@ const Navbar = () => {
                     <a
                       href={link.href}
                       className="text-xl font-medium text-neutral-800 hover:text-primary-600 flex items-center py-2 border-b border-neutral-100"
-                      onClick={(e) => handleNavLinkClick(e, link.href)}
+                      onClick={(e) => handleNavClick(e, link.href)}
                     >
                       <span className="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center mr-4">
                         <span className="text-primary-600 font-bold">{link.name.charAt(0)}</span>
@@ -215,14 +191,19 @@ const Navbar = () => {
                 <div className="bg-primary-50/50 w-full p-6 rounded-xl">
                   <h3 className="text-lg font-semibold text-primary-800 mb-3">¿Necesitas ayuda?</h3>
                   <p className="text-neutral-700 mb-4">Agenda una cita y comienza tu camino hacia el bienestar emocional.</p>
-                  <Button 
-                    variant="primary" 
-                    size="lg" 
-                    className="w-full shadow-md"
-                    onClick={(e) => handleNavLinkClick(e, '#services')}
-                  >
-                    Agendar cita ahora
-                  </Button>
+                  <div className="relative group">
+                    <Button 
+                      variant="primary" 
+                      size="lg" 
+                      className="w-full relative overflow-hidden"
+                      onClick={(e) => handleNavClick(e, '#services')}
+                    >
+                      {/* Efecto de brillo en hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none"></div>
+                      
+                      <span className="relative z-10">Agendar cita ahora</span>
+                    </Button>
+                  </div>
                 </div>
               </motion.div>
             </nav>

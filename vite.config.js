@@ -9,5 +9,32 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     emptyOutDir: true,
+    // Optimizaciones de build
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          framer: ['framer-motion'],
+          maps: ['leaflet', 'react-leaflet'],
+        },
+      },
+    },
+  },
+  // Optimizaciones de desarrollo
+  server: {
+    hmr: {
+      overlay: false,
+    },
+  },
+  // Optimizaciones de CSS
+  css: {
+    devSourcemap: false,
   },
 })

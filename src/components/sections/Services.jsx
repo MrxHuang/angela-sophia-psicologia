@@ -191,9 +191,14 @@ const Services = () => {
           className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mt-8 sm:mt-12 max-w-4xl mx-auto"
         >
           {services.map((service) => (
-            <motion.div key={service.id} variants={cardVariants}>
-              <div className="bg-white rounded-2xl p-6 sm:p-8 glass h-full flex flex-col">
-                <div className="flex flex-col items-center text-center mb-4 sm:mb-6">
+            <motion.div 
+              key={service.id} 
+              variants={cardVariants}
+              className="group"
+            >
+              <div className="bg-white rounded-2xl p-6 sm:p-8 glass h-full flex flex-col relative overflow-hidden">
+                
+                <div className="flex flex-col items-center text-center mb-4 sm:mb-6 relative z-10">
                   <div className="p-3 sm:p-4 bg-primary-50 rounded-full text-primary-600 mb-3 sm:mb-4">
                     {service.icon}
                   </div>
@@ -202,11 +207,11 @@ const Services = () => {
                   </h3>
                 </div>
 
-                <p className="text-neutral-700 mb-4 sm:mb-6 text-center font-medium text-sm sm:text-base">
+                <p className="text-neutral-700 mb-4 sm:mb-6 text-center font-medium text-sm sm:text-base relative z-10">
                   {service.shortDesc}
                 </p>
 
-                <div className="pt-4 sm:pt-6 border-t border-neutral-100 mt-2 flex-grow">
+                <div className="pt-4 sm:pt-6 border-t border-neutral-100 mt-2 flex-grow relative z-10">
                   <p className="text-neutral-600 mb-4 sm:mb-5 text-sm sm:text-base font-normal">
                     {service.description}
                   </p>
@@ -237,14 +242,17 @@ const Services = () => {
                   </ul>
                 </div>
 
-                <div className="mt-auto">
+                <div className="mt-auto relative group">
                   <Button
                     variant="primary"
                     size="md"
-                    className="w-full text-sm sm:text-base"
+                    className="w-full text-sm sm:text-base cursor-pointer relative overflow-hidden"
                     onClick={() => openWhatsApp(service.key)}
                   >
-                    <span className="flex items-center justify-center">
+                    {/* Efecto de brillo en hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none"></div>
+                    
+                    <span className="flex items-center justify-center relative z-10">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2"

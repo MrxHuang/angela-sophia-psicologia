@@ -1,10 +1,12 @@
-import React from 'react';
-import Hero from '../components/sections/Hero';
-import About from '../components/sections/About';
-import Timeline from '../components/sections/Timeline';
-import Services from '../components/sections/Services';
+import React, { Suspense, lazy } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+import LazyWrapper from '../components/LazyWrapper';
+
+// Lazy loading de secciones pesadas
+const Hero = lazy(() => import('../components/sections/Hero'));
+const About = lazy(() => import('../components/sections/About'));
+const Services = lazy(() => import('../components/sections/Services'));
 
 /**
  * Componente principal que integra todas las secciones de la landing page
@@ -16,10 +18,15 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       <Navbar />
       <main style={{ paddingTop: '80px' }}>
-        <Hero />
-        <About />
-
-        <Services />
+        <LazyWrapper>
+          <Hero />
+        </LazyWrapper>
+        <LazyWrapper>
+          <About />
+        </LazyWrapper>
+        <LazyWrapper>
+          <Services />
+        </LazyWrapper>
       </main>
       <Footer />
     </div>

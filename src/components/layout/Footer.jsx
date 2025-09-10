@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import useScrollAnimation from "../../hooks/useScrollAnimation";
 import { socialMedia } from "../../utils/config";
+import { handleNavLinkClick } from "../../utils/scrollUtils";
 
 /**
  * Componente de pie de página simplificado con animaciones
@@ -25,15 +26,9 @@ const Footer = () => {
     },
   };
 
-  // Manejar clic en enlaces de navegación
-  const handleNavLinkClick = (e, href) => {
-    e.preventDefault();
-    const targetId = href.replace("#", "");
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
-    }
+  // Manejar clic en enlaces de navegación (usando función optimizada)
+  const handleNavClick = (e, href) => {
+    handleNavLinkClick(e, href);
   };
 
   // Enlaces principales
@@ -131,7 +126,7 @@ const Footer = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    onClick={(e) => handleNavLinkClick(e, link.href)}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className="text-neutral-600 hover:text-primary-600 transition-colors flex items-center"
                   >
                     <svg
@@ -159,8 +154,7 @@ const Footer = () => {
           <div className="border-t border-neutral-200 pt-4 mt-8 md:mt-0">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-neutral-500 text-sm mb-3 md:mb-0">
-                © {currentYear}{" "}
-                <p>Diseño y desarrollo por</p>
+                © {currentYear} Diseño y desarrollo por{" "}
                 <a
                   href="https://www.instagram.com/juan.ordonezz/"
                   target="_blank"

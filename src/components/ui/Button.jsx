@@ -23,10 +23,10 @@ const Button = ({
 }) => {
   // Variantes de estilo
   const variants = {
-    primary: 'bg-[#5F6CAF] hover:bg-[#4A5899] text-white',
-    secondary: 'bg-[#4A8FE7] hover:bg-[#337AD6] text-white',
-    outline: 'border-2 border-[#5F6CAF] text-[#5F6CAF] hover:bg-[#EEF1FF] hover:border-[#4A5899]',
-    ghost: 'text-[#5F6CAF] hover:bg-[#EEF1FF] hover:text-[#4A5899]'
+    primary: 'bg-gradient-to-r from-[#5F6CAF] to-[#4A5899] hover:from-[#4A5899] hover:to-[#3A4780] text-white shadow-lg hover:shadow-xl hover:shadow-[#5F6CAF]/30 ',
+    secondary: 'bg-gradient-to-r from-[#4A8FE7] to-[#337AD6] hover:from-[#337AD6] hover:to-[#2A6BB8] text-white shadow-lg hover:shadow-xl hover:shadow-[#4A8FE7]/30 ',
+    outline: 'border-2 border-[#5F6CAF] text-[#5F6CAF] hover:bg-gradient-to-r hover:from-[#5F6CAF] hover:to-[#4A5899] hover:text-white hover:border-transparent hover:shadow-lg hover:shadow-[#5F6CAF]/30 ',
+    ghost: 'text-[#5F6CAF] hover:bg-gradient-to-r hover:from-[#EEF1FF] hover:to-[#E0E7FF] hover:text-[#4A5899] hover:shadow-md '
   };
   
   // Tamaños adaptados a responsive
@@ -36,11 +36,29 @@ const Button = ({
     lg: 'py-2 sm:py-3 px-6 sm:px-8 text-base sm:text-lg'
   };
   
-  // Mantenemos la definición pero ya no usamos activamente estas variantes
+  // Variantes de animación más elegantes
   const buttonVariants = {
-    initial: { scale: 1 },
-    hover: { scale: 1.03 },
-    tap: { scale: 0.98 }
+    initial: { 
+      y: 0,
+      boxShadow: "0 4px 14px 0 rgba(0, 0, 0, 0.1)"
+    },
+    hover: { 
+      y: -2,
+      boxShadow: "0 8px 25px 0 rgba(95, 108, 175, 0.3)",
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 17
+      }
+    },
+    tap: { 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 600,
+        damping: 20
+      }
+    }
   };
 
   return (
@@ -48,7 +66,9 @@ const Button = ({
       className={`rounded-full font-medium transition-all duration-300 flex items-center justify-center ${variants[variant]} ${sizes[size]} ${className}`}
       onClick={onClick}
       initial="initial"
-      whileTap={{ scale: 0.98 }}
+      whileHover="hover"
+      whileTap="tap"
+      variants={buttonVariants}
       {...rest}
     >
       {children}

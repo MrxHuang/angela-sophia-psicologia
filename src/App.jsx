@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import NotFound from './pages/NotFound';
+import WhatsAppFloatingButton from './components/ui/WhatsAppFloatingButton';
+import LazyWrapper from './components/LazyWrapper';
+
+// Lazy loading de páginas
+const Home = lazy(() => import('./pages/Home'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 /**
  * Componente principal de la aplicación
@@ -24,10 +28,13 @@ export default function App() {
 
     return (
         <div className="app-container">
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
+            <LazyWrapper>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </LazyWrapper>
+            <WhatsAppFloatingButton />
         </div>
     );
 }
