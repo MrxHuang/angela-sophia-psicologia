@@ -11,14 +11,7 @@
   z-index: 1;
 }
 
-/* Eliminamos el efecto hover de las tarjetas glass
-.glass:hover {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.3);
-}
-*/
 
-/* Estilos para el mapa de Leaflet */
 .leaflet-container {
   font-family: 'Inter', sans-serif;
   width: 100% !important;
@@ -61,7 +54,6 @@
   color: #4A5899 !important;
 }
 
-/* Ajustes adicionales para el mapa */
 .leaflet-marker-icon {
   z-index: 1000 !important;
 }
@@ -72,7 +64,6 @@
   min-height: 250px;
 }
 
-/* Resto de estilos */
 .parallax {
   overflow: hidden;
   letter-spacing: -2px;

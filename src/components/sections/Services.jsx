@@ -10,15 +10,9 @@ import {
 } from "../../utils/whatsappUtils";
 import { socialMedia } from "../../utils/config";
 
-/**
- * Componente para la sección de Servicios de la landing page
- *
- * @returns {React.ReactElement} Componente Services
- */
 const Services = () => {
   const [ref, controls] = useScrollAnimation();
 
-  // Datos de los servicios
   const services = [
     {
       id: 1,
@@ -86,7 +80,6 @@ const Services = () => {
     },
   ];
 
-  // Variantes para animaciones
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -109,7 +102,6 @@ const Services = () => {
     },
   };
 
-  // Función para abrir WhatsApp con el mensaje correspondiente
   const openWhatsApp = (serviceKey) => {
     const url = generateWhatsAppUrl(serviceMessages[serviceKey]);
     window.open(url, "_blank");

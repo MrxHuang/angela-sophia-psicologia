@@ -39,7 +39,7 @@ const StaticMap = ({
     <div className={`overflow-hidden rounded-lg ${className}`}>
       <img 
         src={staticMapUrl} 
-        alt="Mapa de ubicación" 
+        alt="Ubicación de Ángela Sophia Psicóloga en Pereira, Risaralda" 
         className="w-full h-full object-cover"
         width={width}
         height={height}

@@ -21,7 +21,6 @@ const Button = ({
   className = '',
   ...rest 
 }) => {
-  // Variantes de estilo
   const variants = {
     primary: 'bg-gradient-to-r from-[#5F6CAF] to-[#4A5899] hover:from-[#4A5899] hover:to-[#3A4780] text-white shadow-lg hover:shadow-xl hover:shadow-[#5F6CAF]/30 ',
     secondary: 'bg-gradient-to-r from-[#4A8FE7] to-[#337AD6] hover:from-[#337AD6] hover:to-[#2A6BB8] text-white shadow-lg hover:shadow-xl hover:shadow-[#4A8FE7]/30 ',
@@ -29,14 +28,12 @@ const Button = ({
     ghost: 'text-[#5F6CAF] hover:bg-gradient-to-r hover:from-[#EEF1FF] hover:to-[#E0E7FF] hover:text-[#4A5899] hover:shadow-md '
   };
   
-  // Tamaños adaptados a responsive
   const sizes = {
     sm: 'py-1 px-2 sm:px-3 text-xs sm:text-sm',
     md: 'py-1.5 sm:py-2 px-4 sm:px-5 text-sm sm:text-base',
     lg: 'py-2 sm:py-3 px-6 sm:px-8 text-base sm:text-lg'
   };
   
-  // Variantes de animación más elegantes
   const buttonVariants = {
     initial: { 
       y: 0,

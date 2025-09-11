@@ -1,7 +1,7 @@
 # Documentación Técnica - Landing Page Ángela Sophia
 
 ## Descripción
-Landing page profesional para Ángela Sophia, psicóloga especializada en terapia cognitivo-conductual. El sitio web presenta un diseño moderno, accesible y centrado en el usuario, con énfasis en la experiencia móvil y la optimización de rendimiento.
+Landing page profesional para Ángela Sophia, psicóloga especializada en acompañamiento emocional. El sitio web presenta un diseño moderno, accesible y centrado en el usuario, con énfasis en la experiencia móvil y la optimización de rendimiento.
 
 ## Tecnologías Principales
 - React 19

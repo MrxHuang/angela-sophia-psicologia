@@ -23,7 +23,6 @@ const ResponsiveImage = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // Actualizar el ancho de la ventana cuando cambia el tamaño
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -65,7 +64,6 @@ const About = () => {
   const [ref, controls] = useScrollAnimation();
   const parallaxImage = useParallax(0.15);
 
-  // Variantes para animaciones
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -88,7 +86,6 @@ const About = () => {
     },
   };
 
-  // Datos sobre valores y experiencia
   const values = [
     {
       title: "Empatía",
@@ -209,7 +206,7 @@ const About = () => {
           <div className="relative w-full h-full">
             <img
               src={angelaImage}
-              alt="Ángela Sophia"
+              alt="Ángela Sophia - Psicóloga profesional en Pereira, Risaralda"
               className="absolute inset-0 w-full h-full object-cover object-center"
               loading="eager"
             />
@@ -358,7 +355,7 @@ const About = () => {
             <div className="relative w-full h-full">
               <img
                 src={angelaImage}
-                alt="Ángela Sophia"
+                alt="Ángela Sophia - Psicóloga profesional en Pereira, Risaralda"
                 className="absolute inset-0 w-full h-full object-cover object-center"
                 loading="eager"
               />

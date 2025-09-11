@@ -51,7 +51,6 @@ const ParallaxText = ({ children, baseVelocity = 100, className = '' }) => {
 
   React.useEffect(() => {
     requestAnimationFrame(animate);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
